@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/n2n"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="Native-Feed ->Native播放页" />
+
+    <item
+        android:id="@+id/nc"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="Native-Feed 当前页播放" />
+
+
+    <item
+        android:id="@+id/n2nf"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="Native-Feed ->Native Feed播放页" />
+
+    <item
+        android:id="@+id/n2h5"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="Native-Feed ->H5 播放页" />
+    <item
+        android:id="@+id/refresh_feed"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="refresh-feed" />
+
+    <item
+        android:id="@+id/refresh_open"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="当前页面下拉刷新开关" />
+</menu>

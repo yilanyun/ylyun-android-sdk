@@ -1,0 +1,26 @@
+<resources>
+
+    <style name="CustomWindowTitleBackground">
+        <item name="android:background">#ffffff</item>
+    </style>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="android:windowTitleStyle">@style/CustomWindowTitleBackground</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <!--没有选中的样式-->
+    <style name="bottom_normal_text">
+        <item name="android:textColor">#FF979797</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+    <!--选中的样式-->
+    <style name="bottom_selected_text">
+        <item name="android:textColor">#FF3B98FC</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+</resources>

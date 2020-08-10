@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/feed_curplay"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="Hybird-Feed-当前播放" />
+
+    <item
+        android:id="@+id/feed_normal_player"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="Hybird-Feed->正常播放页" />
+
+    <item
+        android:id="@+id/feed_player"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="Hybird-Feed->Feed播放页" />
+
+
+</menu>
