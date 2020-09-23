@@ -12,7 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.yilan.sdk.common.BaseApp;
+import com.yilan.sdk.common.util.BaseApp;
 import com.yilan.sdk.common.util.FSDevice;
 import com.yilan.sdk.common.util.FSDigest;
 import com.yilan.sdk.common.util.FSUdid;

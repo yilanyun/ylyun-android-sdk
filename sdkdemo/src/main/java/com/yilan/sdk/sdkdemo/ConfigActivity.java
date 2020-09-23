@@ -11,9 +11,9 @@ import android.widget.CompoundButton;
 import android.widget.RadioGroup;
 import android.widget.ToggleButton;
 
-import com.yilan.sdk.YLInit;
 import com.yilan.sdk.common.download.YLDownloadManager;
 import com.yilan.sdk.common.util.FSFile;
+import com.yilan.sdk.data.YLInit;
 import com.yilan.sdk.ui.YLUIInit;
 import com.yilan.sdk.ui.configs.CommentConfig;
 import com.yilan.sdk.ui.configs.FeedConfig;
@@ -96,7 +96,6 @@ public class ConfigActivity extends AppCompatActivity implements RadioGroup.OnCh
 
     private void initViews() {
         int commentConfig = PlayerConfig.getInstance().getCommentType();
-        LittleVideoConfig.LittleVideoStyle littleVideoStyle = LittleVideoConfig.getInstance().getLittleVideoStyle();
 
         switch (commentConfig) {
             case PlayerConfig.SHOW_COMMENT_ALL:
@@ -121,14 +120,6 @@ public class ConfigActivity extends AppCompatActivity implements RadioGroup.OnCh
                 liitleCommentRadioGroup.check(R.id.hide_comment_little);
                 break;
         }
-        switch (littleVideoStyle) {
-            case STYLE_RIGHT:
-                littleVideoToolRadioGroup.check(R.id.tool_right);
-                break;
-            case STYLE_BOTTOM:
-                littleVideoToolRadioGroup.check(R.id.tool_bottom);
-                break;
-        }
     }
 
     @Override
@@ -145,10 +136,8 @@ public class ConfigActivity extends AppCompatActivity implements RadioGroup.OnCh
                 break;
 
             case R.id.tool_bottom:
-                LittleVideoConfig.getInstance().setLittleVideoStyle(LittleVideoConfig.LittleVideoStyle.STYLE_BOTTOM);
                 break;
             case R.id.tool_right:
-                LittleVideoConfig.getInstance().setLittleVideoStyle(LittleVideoConfig.LittleVideoStyle.STYLE_RIGHT);
                 break;
             case R.id.show_comment_little:
                 YLUIConfig.getInstance().littleComment(CommentConfig.CommentType.SHOW_COMMENT_ALL);

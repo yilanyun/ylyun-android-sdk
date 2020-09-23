@@ -7,9 +7,9 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.yilan.sdk.common.util.ToastUtil;
-import com.yilan.sdk.entity.user.UserEntity;
+import com.yilan.sdk.data.entity.user.UserEntity;
+import com.yilan.sdk.data.user.YLUser;
 import com.yilan.sdk.ui.web.WebActivity;
-import com.yilan.sdk.user.YLUser;
 
 public class LoginActivity extends AppCompatActivity {
 

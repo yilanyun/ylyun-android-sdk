@@ -12,10 +12,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.yilan.sdk.entity.Channel;
 import com.yilan.sdk.ui.category.ChannelFragment;
 import com.yilan.sdk.ui.configs.FeedConfig;
-import com.yilan.sdk.ui.configs.PlayerConfig;
 
 import java.util.List;
 

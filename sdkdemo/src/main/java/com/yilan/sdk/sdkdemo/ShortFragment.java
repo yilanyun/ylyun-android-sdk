@@ -1,6 +1,5 @@
 package com.yilan.sdk.sdkdemo;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,12 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.yilan.sdk.common.executor.Dispatcher;
-import com.yilan.sdk.common.executor.YLCoroutineScope;
-import com.yilan.sdk.player.UserCallback;
-import com.yilan.sdk.player.entity.PlayData;
-import com.yilan.sdk.player.utils.Constant;
-import com.yilan.sdk.ui.littlevideo.LittleVideoFragment;
+import com.yilan.sdk.ui.little.YLLittleVideoFragment;
 import com.yilan.sdk.ui.littlevideo.KSLittleVideoFragment;
 import com.yilan.sdk.ui.web.WebFragment;
 
@@ -74,9 +68,11 @@ public class ShortFragment extends BaseFragment {
         return super.onOptionsItemSelected(item);
     }
 
+    YLLittleVideoFragment fragment;
+
     private void showDefault() {
         hideAll();
-        final LittleVideoFragment fragment = new LittleVideoFragment();
+        fragment = YLLittleVideoFragment.newInstance();
         manager.beginTransaction().replace(R.id.short_content, fragment).commitAllowingStateLoss();
     }
 
@@ -88,6 +84,19 @@ public class ShortFragment extends BaseFragment {
                 manager.beginTransaction().remove(f).commitAllowingStateLoss();
             }
         }
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (fragment != null) {
+            fragment.onHiddenChanged(hidden);
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
     }
 
 

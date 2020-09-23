@@ -2,8 +2,6 @@ package com.yilan.sdk.sdkdemo;
 
 import android.Manifest;
 import android.annotation.TargetApi;
-import android.content.ClipData;
-import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -18,19 +16,14 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
-import com.yilan.sdk.common.util.FSLogcat;
-import com.yilan.sdk.common.util.PhoneUtil;
-import com.yilan.sdk.entity.MediaInfo;
-import com.yilan.sdk.entity.MediaList;
+import com.yilan.sdk.data.entity.MediaInfo;
 import com.yilan.sdk.ui.configs.ShareCallback;
 import com.yilan.sdk.ui.configs.YLUIConfig;
-import com.yilan.sdk.ui.custom.CustomListener;
-import com.yilan.sdk.ui.custom.FeedExpress;
+import com.yilan.sdk.ui.little.YLLittleVideoFragment;
 import com.yilan.sdk.ui.web.WebFragment;
 
 import java.util.ArrayList;
@@ -75,6 +68,9 @@ public class MainActivity extends AppCompatActivity implements WebFragment.OnVid
                 builder.show();
             }
         });
+
+        YLLittleVideoFragment.preloadVideo();
+
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {

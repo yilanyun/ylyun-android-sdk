@@ -10,10 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.yilan.sdk.YLInit;
-import com.yilan.sdk.common.util.FSDevice;
 import com.yilan.sdk.common.util.FSUdid;
-import com.yilan.sdk.ui.video.VideoActivity;
+import com.yilan.sdk.data.YLInit;
 
 public class MyFragment extends Fragment {
     @Nullable
