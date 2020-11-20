@@ -4,31 +4,27 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.view.View;
 import android.widget.FrameLayout;
 
 import com.yilan.sdk.common.util.ExecutorUtil;
-import com.yilan.sdk.common.util.FSDevice;
-import com.yilan.sdk.ui.ad.ylad.AdEngineFactory;
-import com.yilan.sdk.ui.ad.ylad.engine.IYLAdEngine;
-import com.yilan.sdk.ui.ad.ylad.engine.YLAdEngine;
-import com.yilan.sdk.ui.ad.ylad.YLAdSimpleListener;
-import com.yilan.sdk.ui.ad.constant.AdConstants;
-import com.yilan.sdk.ui.ad.entity.AdEntity;
-import com.yilan.sdk.ui.ad.ylad.view.AdFrameLayout;
+import com.yilan.sdk.ylad.YLAdSimpleListener;
+import com.yilan.sdk.ylad.constant.YLAdConstants;
+import com.yilan.sdk.ylad.engine.IYLAdEngine;
+import com.yilan.sdk.ylad.entity.YLAdEntity;
+import com.yilan.sdk.ylad.service.AdEngineService;
 
 /**
  * Author And Date: liurongzhi on 2020/1/20.
  * Description: com.yilan.sdk.sdkdemo
  */
 public class SplashActivity extends Activity {
-    private IYLAdEngine<AdFrameLayout> splashEngine;
+    private IYLAdEngine splashEngine;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        splashEngine = AdEngineFactory.getInstance().createSplashEngine();
+        splashEngine = AdEngineService.instance.createEngine(YLAdConstants.AdName.SPLASH);
         if (!splashEngine.hasAd()) {
             jumpToMain();
             return;
@@ -41,37 +37,37 @@ public class SplashActivity extends Activity {
                 }
             }
         }, 3000);
-        AdFrameLayout rootView = findViewById(R.id.sp_container);
+        FrameLayout rootView = findViewById(R.id.sp_container);
         splashEngine.setAdListener(new YLAdSimpleListener() {
             @Override
-            public void onSuccess(int source, boolean type, View view, AdEntity entity) {
-                super.onSuccess(source, type, view, entity);
+            public void onSuccess(int source, boolean type, YLAdEntity entity) {
+                super.onSuccess(source, type, entity);
                 System.out.println("-------onSuccess:" + type);
                 noAd = false;
             }
 
             @Override
-            public void onShow(int source, boolean type, AdEntity entity) {
+            public void onShow(int source, boolean type, YLAdEntity entity) {
                 super.onShow(source, type, entity);
                 System.out.println("-------onShow:" + type);
             }
 
             @Override
-            public void onError(int source, AdEntity entity, String msg) {
-                super.onError(source, entity, msg);
+            public void onError(int source, YLAdEntity entity, int code, String msg) {
+                super.onError(source, entity, code, msg);
                 System.out.println("-------onError:" + msg);
                 jumpToMain();
             }
 
             @Override
-            public void onSkip(int source, boolean type, AdEntity entity) {
+            public void onSkip(int source, boolean type, YLAdEntity entity) {
                 super.onSkip(source, type, entity);
                 System.out.println("-------onSkip:");
                 jumpToMain();
             }
 
             @Override
-            public void onTimeOver(int source, boolean type, AdEntity entity) {
+            public void onTimeOver(int source, boolean type, YLAdEntity entity) {
                 super.onTimeOver(source, type, entity);
                 System.out.println("-------onTimeOver:");
                 if (!isStop) {
@@ -80,12 +76,12 @@ public class SplashActivity extends Activity {
             }
 
             @Override
-            public void onClick(int source, boolean type, AdEntity entity) {
+            public void onClick(int source, boolean type, YLAdEntity entity) {
                 super.onClick(source, type, entity);
             }
 
             @Override
-            public void onAdEmpty(int source, boolean type, AdEntity entity) {
+            public void onAdEmpty(int source, boolean type, YLAdEntity entity) {
                 super.onAdEmpty(source, type, entity);
                 jumpToMain();
             }

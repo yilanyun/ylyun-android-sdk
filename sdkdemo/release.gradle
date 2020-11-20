@@ -57,7 +57,7 @@ dependencies {
 
 
     //一览sdk
-    implementation "com.yilan.sdk:ui:2.5.0.6"
+    implementation "com.yilan.sdk:ui:3.0.0.0"
     implementation 'com.android.support:multidex:1.0.3'
 
 }

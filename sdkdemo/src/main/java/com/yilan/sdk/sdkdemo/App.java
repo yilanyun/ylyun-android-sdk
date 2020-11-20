@@ -4,34 +4,24 @@ import android.app.Application;
 import android.content.Context;
 import android.support.multidex.MultiDex;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.squareup.leakcanary.LeakCanary;
-import com.yilan.sdk.common.util.BaseApp;
 import com.yilan.sdk.common.util.FSLogcat;
 import com.yilan.sdk.common.util.FSString;
 import com.yilan.sdk.data.entity.MediaInfo;
-import com.yilan.sdk.player.UserCallback;
-import com.yilan.sdk.data.entity.PlayData;
-import com.yilan.sdk.player.utils.Constant;
 import com.yilan.sdk.player.ylplayer.YLPlayerConfig;
 import com.yilan.sdk.player.ylplayer.callback.OnPlayerCallBack;
 import com.yilan.sdk.ui.YLUIInit;
-import com.yilan.sdk.ui.ad.entity.AdEntity;
-import com.yilan.sdk.ui.configs.AdVideoCallback;
 import com.yilan.sdk.ui.configs.CommentConfig;
-import com.yilan.sdk.ui.configs.CommentSimpleCallback;
 import com.yilan.sdk.ui.configs.FeedConfig;
-import com.yilan.sdk.ui.configs.LikeCallback;
 import com.yilan.sdk.ui.configs.LittleVideoConfig;
-import com.yilan.sdk.ui.configs.OnAvatarClickListener;
-import com.yilan.sdk.ui.configs.OnRelateVideoListener;
-import com.yilan.sdk.ui.configs.PageConstant;
-import com.yilan.sdk.ui.configs.PageJumpCallback;
 import com.yilan.sdk.ui.configs.YLUIConfig;
-import com.yilan.sdk.ui.configs.onLittleVideoCallBack;
+import com.yilan.sdk.ui.configs.callback.CommentSimpleCallback;
+import com.yilan.sdk.ui.configs.callback.LikeCallback;
+import com.yilan.sdk.ui.configs.callback.OnAvatarClickListener;
+import com.yilan.sdk.ui.configs.callback.OnLittleVideoCallBack;
+import com.yilan.sdk.ui.configs.callback.OnRelateVideoListener;
 import com.yilan.sdk.ylad.YLAdListener;
-import com.yilan.sdk.ylad.constant.YLAdConstants;
 
 public class App extends Application {
 
@@ -70,77 +60,73 @@ public class App extends Application {
                 .registerAdListener(new YLAdListener() {
 
                     @Override
-                    public void onSuccess(String adType, String reqId, String pid) {
-
-                        FSLogcat.i(TAG, "[onSuccess] " + "adType = " + adType + " reqId = " + reqId + " pid = " + pid);
+                    public void onSuccess(String adType, int source, String reqId, String pid) {
+                        Log.i(TAG, "[onSuccess] " + "adType = " + adType + " source = " + source + " reqId = " + reqId + " pid = " + pid);
                     }
 
                     @Override
-                    public void onError(String adType, String reqId, int code, String msg, String pid) {
-                        FSLogcat.i(TAG, "[onError] " + "adType = " + adType + " reqId = " + reqId + " pid = " + pid);
-                        if (adType.equals(YLAdConstants.AdName.FEED_VERTICAL)) {
-                            Toast.makeText(BaseApp.get(), "msg:" + msg, Toast.LENGTH_SHORT).show();
-                        }
+                    public void onError(String adType, int source, String reqId, int code, String msg, String pid) {
+                        Log.i(TAG, "[onError] " + "adType = " + adType + " source = " + source + " reqId = " + reqId + " pid = " + pid);
                     }
 
                     @Override
-                    public void onRenderError(String adType, int code, String msg, String pid) {
-                        FSLogcat.i(TAG, "[onRenderError] " + "adType = " + adType + " reqId = " + code + " pid = " + pid);
+                    public void onRenderError(String adType, int source, String reqId, int code, String msg, String pid) {
+                        Log.i(TAG, "[onRenderError] " + "adType = " + adType + " source = " + source + " reqId = " + code + " pid = " + pid);
                     }
 
                     @Override
-                    public void onShow(String adType, String reqId, String pid) {
-                        FSLogcat.i(TAG, "[onShow] " + "adType = " + adType + " reqId = " + reqId + " pid = " + pid);
+                    public void onShow(String adType, int source, String reqId, String pid) {
+                        Log.i(TAG, "[onShow] " + "adType = " + adType + " source = " + source + " reqId = " + reqId + " pid = " + pid);
                     }
 
                     @Override
-                    public void onClick(String adType, String reqId, String pid) {
-                        FSLogcat.i(TAG, "[onClick] " + "adType = " + adType + " reqId = " + reqId + " pid = " + pid);
+                    public void onClick(String adType, int source, String reqId, String pid) {
+                        Log.i(TAG, "[onClick] " + "adType = " + adType + " source = " + source + " reqId = " + reqId + " pid = " + pid);
                     }
 
                     @Override
-                    public void onSkip(String adType, String reqId, String pid) {
-                        FSLogcat.i(TAG, "[onSkip] " + "adType = " + adType + " reqId = " + reqId + " pid = " + pid);
+                    public void onSkip(String adType, int source, String reqId, String pid) {
+                        Log.i(TAG, "[onSkip] " + "adType = " + adType + " source = " + source + " reqId = " + reqId + " pid = " + pid);
                     }
 
                     @Override
-                    public void onTimeOver(String adType, String reqId, String pid) {
-                        FSLogcat.i(TAG, "[onTimeOver] " + "adType = " + adType + " reqId = " + reqId + " pid = " + pid);
+                    public void onTimeOver(String adType, int source, String reqId, String pid) {
+                        Log.i(TAG, "[onTimeOver] " + "adType = " + adType + " source = " + source + " reqId = " + reqId + " pid = " + pid);
                     }
 
                     @Override
-                    public void onClose(String adType, String reqId, String pid) {
-                        FSLogcat.i(TAG, "[onClose] " + "adType = " + adType + " reqId = " + reqId + " pid = " + pid);
+                    public void onClose(String adType, int source, String reqId, String pid) {
+                        Log.i(TAG, "[onClose] " + "adType = " + adType + " source = " + source + " reqId = " + reqId + " pid = " + pid);
                     }
 
                     @Override
-                    public void onAdEmpty(String adType, String reqId, String pid) {
-                        FSLogcat.i(TAG, "[onAdEmpty] " + "adType = " + adType + " reqId = " + reqId + " pid = " + pid);
+                    public void onAdEmpty(String adType, int source, String reqId, String pid) {
+                        Log.i(TAG, "[onAdEmpty] " + "adType = " + adType + " source = " + source + " reqId = " + reqId + " pid = " + pid);
                     }
 
                     @Override
-                    public void onVideoStart(String adType, String reqId, String pid) {
-                        FSLogcat.i(TAG, "[onVideoStart] " + "adType = " + adType + " reqId = " + reqId + " pid = " + pid);
+                    public void onVideoStart(String adType, int source, String reqId, String pid) {
+                        Log.i(TAG, "[onVideoStart] " + "adType = " + adType + " source = " + source + " reqId = " + reqId + " pid = " + pid);
                     }
 
                     @Override
-                    public void onVideoPause(String adType, String reqId, String pid) {
-                        FSLogcat.i(TAG, "[onVideoPause] " + "adType = " + adType + " reqId = " + reqId + " pid = " + pid);
+                    public void onVideoPause(String adType, int source, String reqId, String pid) {
+                        Log.i(TAG, "[onVideoPause] " + "adType = " + adType + " source = " + source + " reqId = " + reqId + " pid = " + pid);
                     }
 
                     @Override
-                    public void onVideoResume(String adType, String reqId, String pid) {
-                        FSLogcat.i(TAG, "[onVideoResume] " + "adType = " + adType + " reqId = " + reqId + " pid = " + pid);
+                    public void onVideoResume(String adType, int source, String reqId, String pid) {
+                        Log.i(TAG, "[onVideoResume] " + "adType = " + adType + " source = " + source + " reqId = " + reqId + " pid = " + pid);
                     }
 
                     @Override
-                    public void onVideoComplete(String adType, String reqId, String pid) {
-                        FSLogcat.i(TAG, "[onVideoComplete] " + "adType = " + adType + " reqId = " + reqId + " pid = " + pid);
+                    public void onVideoComplete(String adType, int source, String reqId, String pid) {
+                        Log.i(TAG, "[onVideoComplete] " + "adType = " + adType + " source = " + source + " reqId = " + reqId + " pid = " + pid);
                     }
 
                     @Override
-                    public void onVideoError(String adType, String reqId, String pid) {
-                        FSLogcat.i(TAG, "[onVideoError] " + "adType = " + adType + " reqId = " + reqId + " pid = " + pid);
+                    public void onVideoError(String adType, int source, String reqId, String pid) {
+                        Log.i(TAG, "[onVideoError] " + "adType = " + adType + " source = " + source + " reqId = " + reqId + " pid = " + pid);
                     }
                 });
         YLUIConfig.getInstance().registerCommentCallBack(new CommentSimpleCallback() {
@@ -179,26 +165,13 @@ public class App extends Application {
             public void onRelateClick(String videoID) {
                 FSLogcat.e("Relate", "相关视频被点击了：" + videoID);
             }
-        }).registerLittleVideoCallBack(new onLittleVideoCallBack() {
+        }).registerLittleVideoCallBack(new OnLittleVideoCallBack() {
             @Override
             public void onPositionChange(int position) {
                 FSLogcat.e("onPositionChange", "当前位置：" + position);
 
             }
-        })
-                .registerPageJumpCallBack(new PageJumpCallback() {
-                    @Override
-                    public void onJumpToPage(String pageName) {
-                        if (PageConstant.PAGE_UGC.equals(pageName)) {
-                            FSLogcat.e("FeedJumpToVideoCallback", "跳转到UGC视频播放页");
-                        } else if (PageConstant.PAGE_PGC.equals(pageName)) {
-                            FSLogcat.e("FeedJumpToVideoCallback", "跳转到PGC视频播放页");
-                        } else if (PageConstant.PAGE_CP_DETAIL.equals(pageName)) {
-                            FSLogcat.e("CpJumpCallback", "跳转到CP详情页");
-                        }
-                    }
-                })
-                .setVideoSurfaceModel(YLPlayerConfig.SURFACE_MODEL_CROP);//设置视频适配模式
+        }).setVideoSurfaceModel(YLPlayerConfig.SURFACE_MODEL_CROP);//设置视频适配模式
         LittleVideoConfig.getInstance()
                 .registerPlayerCallBack(new OnPlayerCallBack() {
                     @Override
@@ -245,68 +218,8 @@ public class App extends Application {
                     public void onStop(String pager, String videoID, String taskID) {
 
                     }
-                })
-                .setAdVideoCallback(new AdVideoCallback() {
-                    @Override
-                    public void onVideoLoad(AdEntity entity) {
-                        Log.d("Callback-littleAd", "视频加载成功" + entity.getAdSlotId());
-                    }
-
-                    @Override
-                    public void onVideoError(int errorCode, AdEntity entity) {
-                        Log.d("Callback-littleAd", "视频播放错误：errorCode=" + errorCode + entity.getAdSlotId() + " reqid:" + entity.getReqId());
-                    }
-
-                    @Override
-                    public void onVideoAdStartPlay(AdEntity entity) {
-                        Log.d("Callback-littleAd", "视频开始播放" + entity.getAdSlotId() + " reqid:" + entity.getReqId());
-                    }
-
-                    @Override
-                    public void onVideoAdPaused(AdEntity entity) {
-                        Log.d("Callback-littleAd", "视频暂停播放" + entity.getAdSlotId() + " reqid:" + entity.getReqId());
-                    }
-
-                    @Override
-                    public void onVideoAdContinuePlay(AdEntity entity) {
-                        Log.d("Callback-littleAd", "视频继续播放" + entity.getAdSlotId() + " reqid:" + entity.getReqId());
-                    }
-
-                    @Override
-                    public void onVideoAdComplete(AdEntity entity) {
-                        Log.d("Callback-littleAd", "视频播放完成" + entity.getAdSlotId() + " reqid:" + entity.getReqId());
-                    }
                 });
-        FeedConfig.getInstance()
-                .setUserCallback(new UserCallback() {
-                    @Override
-                    public boolean event(int type, PlayData data, int playerHash) {
-                        switch (type) {
-                            case Constant.STATE_PLAYING_BUFFERING_START:
-                                Log.d("FeedVideoUserCallback", "当前播放状态 : 开始卡顿");
-                                break;
-                            case Constant.STATE_PLAYING_BUFFERING_END:
-                                Log.d("FeedVideoUserCallback", "当前播放状态 : 卡顿结束");
-                                break;
-                            case Constant.STATE_PREPARED:
-                                Log.d("FeedVideoUserCallback", "当前播放状态 : 正在准备");
-                                break;
-                            case Constant.STATE_ERROR:
-                                Log.d("FeedVideoUserCallback", "当前播放状态 : 播放错误");
-                                break;
-                            case Constant.STATE_PLAYING:
-                                Log.d("FeedVideoUserCallback", "当前播放状态 : 正在播放");
-                                break;
-                            case Constant.STATE_COMPLETE:
-                                break;
-                            case Constant.STATE_PAUSED:
-                                Log.d("FeedVideoUserCallback", "当前播放状态 : 暂停");
-                                break;
-                        }
-                        return false;
-                    }
-                })
-                .setOnItemClickListener(new FeedConfig.OnClickListener() {
+        FeedConfig.getInstance().setOnItemClickListener(new FeedConfig.OnClickListener() {
                     @Override
                     public boolean onClick(Context context, MediaInfo info) {
                         Log.e("click ", "点击了 " + info);

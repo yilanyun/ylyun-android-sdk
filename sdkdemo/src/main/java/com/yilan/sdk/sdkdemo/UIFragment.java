@@ -49,16 +49,6 @@ public class UIFragment extends BaseFragment {
             case R.id.n2n:
                 showDefault();
                 break;
-
-            case R.id.n2nf:
-                hideAll();
-                FeedConfig.getInstance()
-                        .setPlayerStyle(FeedConfig.STYLE_NATIVE_FEED);
-                ChannelFragment fragment2 = new ChannelFragment();
-                manager.beginTransaction().add(R.id.ui_content, fragment2).commitAllowingStateLoss();
-                channelFragment = fragment2;
-                break;
-
             case R.id.nc:
                 hideAll();
                 FeedConfig.getInstance()

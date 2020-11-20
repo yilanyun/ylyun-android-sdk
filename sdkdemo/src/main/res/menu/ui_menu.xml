@@ -11,12 +11,6 @@
         android:icon="@drawable/ic_home_black_24dp"
         android:title="Native-Feed 当前页播放" />
 
-
-    <item
-        android:id="@+id/n2nf"
-        android:icon="@drawable/ic_home_black_24dp"
-        android:title="Native-Feed ->Native Feed播放页" />
-
     <item
         android:id="@+id/n2h5"
         android:icon="@drawable/ic_home_black_24dp"

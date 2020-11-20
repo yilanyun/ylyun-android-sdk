@@ -21,8 +21,8 @@ import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.yilan.sdk.data.entity.MediaInfo;
-import com.yilan.sdk.ui.configs.ShareCallback;
 import com.yilan.sdk.ui.configs.YLUIConfig;
+import com.yilan.sdk.ui.configs.callback.ShareCallback;
 import com.yilan.sdk.ui.little.YLLittleVideoFragment;
 import com.yilan.sdk.ui.web.WebFragment;
 
