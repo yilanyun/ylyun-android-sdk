@@ -5,8 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
-import com.yilan.sdk.common.util.ToastUtil;
 import com.yilan.sdk.data.entity.user.UserEntity;
 import com.yilan.sdk.data.user.YLUser;
 import com.yilan.sdk.ui.web.WebActivity;
@@ -37,12 +37,12 @@ public class LoginActivity extends AppCompatActivity {
         findViewById(R.id.gettoken).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               UserEntity userEntity = YLUser.getInstance().getUser();
-               if(userEntity == null){
-                   ToastUtil.show(LoginActivity.this, "user: ");
-               }else {
-                   ToastUtil.show(LoginActivity.this, "user: " + userEntity.toString());
-               }
+                UserEntity userEntity = YLUser.getInstance().getUser();
+                if (userEntity == null) {
+                    Toast.makeText(LoginActivity.this, "user: ", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(LoginActivity.this, "user: " + userEntity.toString(), Toast.LENGTH_SHORT).show();
+                }
 
             }
         });

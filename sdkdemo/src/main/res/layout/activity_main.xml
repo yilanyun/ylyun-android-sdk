@@ -8,6 +8,11 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+    <com.yilan.sdk.sdkdemo.view.TitleLayout
+        android:id="@+id/layout_common_title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
+
     <FrameLayout
         android:id="@+id/content"
         android:layout_width="match_parent"
@@ -20,7 +25,6 @@
         android:id="@+id/navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?android:attr/windowBackground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -28,6 +32,7 @@
         app:itemTextAppearanceInactive="@style/bottom_normal_text"
         app:labelVisibilityMode="labeled"
         app:itemIconSize="25dp"
+        app:itemIconTint="@color/menu_color_selector"
         app:menu="@menu/navigation" />
 
 </LinearLayout>

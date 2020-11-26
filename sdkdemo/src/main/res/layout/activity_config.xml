@@ -225,6 +225,30 @@
                     android:textOn="分享参数ON" />
 
             </LinearLayout>
+
+            <Button
+                android:id="@+id/start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="网络检测" />
+
+            <Button
+                android:id="@+id/user_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="设置用户标签" />
+
+            <Button
+                android:id="@+id/ad_entrance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="广告测试入口" />
         </LinearLayout>
     </ScrollView>
+
+    <FrameLayout
+        android:id="@+id/ad_fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_alignParentRight="true" />
 </RelativeLayout>

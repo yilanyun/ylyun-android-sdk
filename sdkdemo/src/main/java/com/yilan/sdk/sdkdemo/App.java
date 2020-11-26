@@ -6,9 +6,6 @@ import android.support.multidex.MultiDex;
 import android.util.Log;
 
 import com.squareup.leakcanary.LeakCanary;
-import com.yilan.sdk.common.util.FSLogcat;
-import com.yilan.sdk.common.util.FSString;
-import com.yilan.sdk.data.entity.MediaInfo;
 import com.yilan.sdk.player.ylplayer.YLPlayerConfig;
 import com.yilan.sdk.player.ylplayer.callback.OnPlayerCallBack;
 import com.yilan.sdk.ui.YLUIInit;
@@ -26,17 +23,11 @@ import com.yilan.sdk.ylad.YLAdListener;
 public class App extends Application {
 
     public static final String TAG = "YL_AD_CALLBACK";
-    public static final String TAG_LITTLE = "YL_LI";
+    public static final String TAG_LITTLE = "YL_VIDEO_CALLBACK";
 
     @Override
     public void onCreate() {
         super.onCreate();
-        FSLogcat.DEBUG = true;
-        String processName = FSString.getProcessName(this, android.os.Process.myPid());
-        FSLogcat.e("App value", "" + processName);
-        if (!this.getPackageName().equals(processName)) {
-            return;
-        }
         LeakCanary.install(this);
         YLUIInit.getInstance()
                 .setCrashOpen(false)
@@ -46,17 +37,22 @@ public class App extends Application {
                 .logEnable(true)
                 .build();
         YLUIConfig.getInstance()
+                .feedPlayStyle(FeedConfig.STYLE_FEED_PLAY)
+                .recommendHintEnable(true)
                 .littleLikeShow(true)
                 .littleShareShow(true)
+                .littleShowGuide(true)
+                .littleShowAvatar(true)
+                .feedShowAvatar(true)
                 .littleComment(CommentConfig.CommentType.SHOW_COMMENT_ALL)
                 .videoComment(CommentConfig.CommentType.SHOW_COMMENT_ALL)
-                .setVideoSurfaceModel(YLPlayerConfig.SURFACE_MODEL_FIT)
+                .setVideoSurfaceModel(YLPlayerConfig.SURFACE_MODEL_CROP)
                 .videoLikeShow(true)
                 .videoShareShow(true)
                 .followAvailable(true)
                 .followChannelAvailable(true)
                 .feedAvatarClickable(true)
-                .feedPlayAuto(true)
+                .feedPlayAuto(false)
                 .registerAdListener(new YLAdListener() {
 
                     @Override
@@ -132,99 +128,93 @@ public class App extends Application {
         YLUIConfig.getInstance().registerCommentCallBack(new CommentSimpleCallback() {
             @Override
             public void onCommentClick(String videoID) {
-                FSLogcat.e("Comment", "评论点击");
+                Log.e("Comment", "评论点击");
             }
 
             @Override
             public void onCommentSend(String videoID) {
-                FSLogcat.e("Comment", "评论发送");
+                Log.e("Comment", "评论发送");
             }
 
             @Override
             public boolean onCommentShow(String videoID) {
-                FSLogcat.e("Comment", "评论展示");
+                Log.e("Comment", "评论展示");
                 return false;
             }
 
             @Override
             public void onCommentHide(String videoID) {
-                FSLogcat.e("Comment", "评论关闭");
+                Log.e("Comment", "评论关闭");
             }
         }).registerLikeCallBack(new LikeCallback() {
             @Override
             public void onLike(String videoID, boolean isLike) {
-                FSLogcat.e("onLike", isLike ? "点赞：" + videoID : "取消点赞：" + videoID);
+                Log.e("onLike", isLike ? "点赞：" + videoID : "取消点赞：" + videoID);
             }
         }).registerAvatarClick(new OnAvatarClickListener() {
             @Override
             public void onAvatarClick() {
-                FSLogcat.e("Avatar", "头像被点击了");
+                Log.e("Avatar", "头像被点击了");
             }
         }).registerRelateClick(new OnRelateVideoListener() {
             @Override
             public void onRelateClick(String videoID) {
-                FSLogcat.e("Relate", "相关视频被点击了：" + videoID);
+                Log.e("Relate", "相关视频被点击了：" + videoID);
             }
         }).registerLittleVideoCallBack(new OnLittleVideoCallBack() {
             @Override
             public void onPositionChange(int position) {
-                FSLogcat.e("onPositionChange", "当前位置：" + position);
+                Log.e("onPositionChange", "当前位置：" + position);
 
             }
-        }).setVideoSurfaceModel(YLPlayerConfig.SURFACE_MODEL_CROP);//设置视频适配模式
+        });
         LittleVideoConfig.getInstance()
+                .setVideoLoop(false)
                 .registerPlayerCallBack(new OnPlayerCallBack() {
                     @Override
                     public void onStart(String pager, String videoID, String taskID) {
-                        Log.d(TAG_LITTLE, "当前播放状态 : 开始播放");
+                        Log.d(TAG_LITTLE, "播放状态---onStart [pager：" + pager + "  videoID：" + videoID + "]");
                     }
 
                     @Override
                     public void onPause(String pager, String videoID, String taskID) {
-                        Log.d(TAG_LITTLE, "当前播放状态 : 暂停");
+                        Log.d(TAG_LITTLE, "播放状态---onPause [pager：" + pager + "  videoID：" + videoID + "]");
                     }
 
                     @Override
                     public void onResume(String pager, String videoID, String taskID) {
-
+                        Log.d(TAG_LITTLE, "播放状态---onResume [pager：" + pager + "  videoID：" + videoID + "]");
                     }
 
                     @Override
                     public void onComplete(String pager, String videoID, String taskID) {
-                        Log.d(TAG_LITTLE, "当前播放状态 : 卡顿结束");
+                        Log.d(TAG_LITTLE, "播放状态---onComplete [pager：" + pager + "  videoID：" + videoID + "]");
                     }
 
                     @Override
                     public void onLoopComplete(String pager, String videoID, String taskID, int num) {
-                        Log.d(TAG_LITTLE, "当前播放状态 : 卡顿结束");
+                        Log.d(TAG_LITTLE, "播放状态---onLoopComplete [pager：" + pager + "  videoID：" + videoID + "]");
                     }
 
                     @Override
                     public void onStuckStart(String pager, String videoID, String taskID) {
-                        Log.d(TAG_LITTLE, "当前播放状态 : 开始卡顿");
+                        Log.d(TAG_LITTLE, "播放状态---onStuckStart [pager：" + pager + "  videoID：" + videoID + "]");
                     }
 
                     @Override
                     public void onStuckEnd(String pager, String videoID, String taskID) {
-                        Log.d(TAG_LITTLE, "当前播放状态 : 卡顿结束");
+                        Log.d(TAG_LITTLE, "播放状态---onStuckEnd [pager：" + pager + "  videoID：" + videoID + "]");
                     }
 
                     @Override
                     public void onError(String pager, String videoID, String taskID) {
-
+                        Log.d(TAG_LITTLE, "播放状态---onError [pager：" + pager + "  videoID：" + videoID + "]");
                     }
 
                     @Override
                     public void onStop(String pager, String videoID, String taskID) {
-
+                        Log.d(TAG_LITTLE, "播放状态---onStop [pager：" + pager + "  videoID：" + videoID + "]");
                     }
-                });
-        FeedConfig.getInstance().setOnItemClickListener(new FeedConfig.OnClickListener() {
-                    @Override
-                    public boolean onClick(Context context, MediaInfo info) {
-                        Log.e("click ", "点击了 " + info);
-                        return false;
-                    }//点击回调
                 });
     }
 

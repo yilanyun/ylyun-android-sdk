@@ -1,5 +1,7 @@
 package com.yilan.sdk.sdkdemo;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -7,8 +9,9 @@ import android.widget.CompoundButton;
 import android.widget.RadioGroup;
 import android.widget.ToggleButton;
 
-import com.yilan.sdk.common.download.YLDownloadManager;
 import com.yilan.sdk.data.YLInit;
+import com.yilan.sdk.sdkdemo.ad.ADTestActivity;
+import com.yilan.sdk.sdkdemo.netstate.NetStateActivity;
 import com.yilan.sdk.ui.YLUIInit;
 import com.yilan.sdk.ui.configs.CommentConfig;
 import com.yilan.sdk.ui.configs.FeedConfig;
@@ -16,11 +19,10 @@ import com.yilan.sdk.ui.configs.LittleVideoConfig;
 import com.yilan.sdk.ui.configs.PlayerConfig;
 import com.yilan.sdk.ui.configs.YLUIConfig;
 
-import static com.yilan.sdk.ui.configs.CommentConfig.CommentType.DISMISS_COMMENT;
-import static com.yilan.sdk.ui.configs.CommentConfig.CommentType.SHOW_COMMENT_ALL;
-import static com.yilan.sdk.ui.configs.CommentConfig.CommentType.SHOW_COMMENT_LIST;
+import java.util.HashMap;
 
-public class ConfigActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener, CompoundButton.OnCheckedChangeListener {
+public class ConfigActivity extends AppCompatActivity implements
+        RadioGroup.OnCheckedChangeListener, CompoundButton.OnCheckedChangeListener {
 
     private RadioGroup commentRadioGroup;
     private RadioGroup littleVideoToolRadioGroup;
@@ -38,7 +40,6 @@ public class ConfigActivity extends AppCompatActivity implements RadioGroup.OnCh
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        YLDownloadManager.getInstance().init(this);
         setContentView(R.layout.activity_config);
 
         commentRadioGroup = findViewById(R.id.config_comment);
@@ -82,18 +83,41 @@ public class ConfigActivity extends AppCompatActivity implements RadioGroup.OnCh
         share_pa.setChecked(YLInit.getInstance().isAppendSharePa());
 
         initViews();
-
         findViewById(R.id.finish).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
+
+        findViewById(R.id.start).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ConfigActivity.this, NetStateActivity.class));
+            }
+        });
+
+        findViewById(R.id.user_tag).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String userId = "0x112uuwqwe";
+                HashMap<String, Object> map = new HashMap<>();
+                map.put("gender", 1);
+                map.put("age", "23,26");
+                YLUIConfig.getInstance().setUserTag(userId, map);
+            }
+        });
+
+        findViewById(R.id.ad_entrance).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ConfigActivity.this, ADTestActivity.class));
+            }
+        });
     }
 
     private void initViews() {
         CommentConfig.CommentType commentConfig = PlayerConfig.getInstance().getCommentType();
-
         switch (commentConfig) {
             case SHOW_COMMENT_ALL:
                 commentRadioGroup.check(R.id.show_comment);
@@ -105,8 +129,7 @@ public class ConfigActivity extends AppCompatActivity implements RadioGroup.OnCh
                 commentRadioGroup.check(R.id.hide_comment);
                 break;
         }
-        CommentConfig.CommentType  littleCommentConfig = LittleVideoConfig.getInstance().getCommentType();
-        switch (littleCommentConfig) {
+        switch (LittleVideoConfig.getInstance().getCommentType()) {
             case SHOW_COMMENT_ALL:
                 liitleCommentRadioGroup.check(R.id.show_comment_little);
                 break;
@@ -131,23 +154,20 @@ public class ConfigActivity extends AppCompatActivity implements RadioGroup.OnCh
             case R.id.hide_comment:
                 PlayerConfig.getInstance().setCommentType(CommentConfig.CommentType.DISMISS_COMMENT);
                 break;
-
-            case R.id.tool_bottom:
-                break;
-            case R.id.tool_right:
-                break;
             case R.id.show_comment_little:
-                YLUIConfig.getInstance().littleComment(SHOW_COMMENT_ALL);
+                YLUIConfig.getInstance().littleComment(CommentConfig.CommentType.SHOW_COMMENT_ALL);
                 break;
             case R.id.show_comment_list_little:
-                YLUIConfig.getInstance().littleComment(SHOW_COMMENT_LIST);
+                YLUIConfig.getInstance().littleComment(CommentConfig.CommentType.SHOW_COMMENT_LIST);
                 break;
             case R.id.hide_comment_little:
-                YLUIConfig.getInstance().littleComment(DISMISS_COMMENT);
+                YLUIConfig.getInstance().littleComment(CommentConfig.CommentType.DISMISS_COMMENT);
                 break;
         }
     }
 
+
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         switch (buttonView.getId()) {
@@ -180,4 +200,10 @@ public class ConfigActivity extends AppCompatActivity implements RadioGroup.OnCh
                 break;
         }
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
 }

@@ -6,25 +6,23 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.yilan.sdk.sdkdemo.view.TitleLayout;
 import com.yilan.sdk.ui.category.ChannelFragment;
 import com.yilan.sdk.ui.configs.FeedConfig;
 
 import java.util.List;
 
-public class UIFragment extends BaseFragment {
+public class UIFragment extends BaseFragment implements TitleLayout.OptionsItemSelectedListener {
     private FragmentManager manager;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_ui, container, false);
-        setHasOptionsMenu(true);
         return view;
     }
 
@@ -35,53 +33,44 @@ public class UIFragment extends BaseFragment {
         showDefault();
     }
 
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.ui_menu, menu);
-
-    }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.n2n:
+                FeedConfig.getInstance().setPlayerStyle(FeedConfig.STYLE_NATIVE);
                 showDefault();
                 break;
             case R.id.nc:
                 hideAll();
-                FeedConfig.getInstance()
-                        .setPlayerStyle(FeedConfig.STYLE_FEED_PLAY);
+                FeedConfig.getInstance().setPlayerStyle(FeedConfig.STYLE_FEED_PLAY);
                 ChannelFragment fragment4 = new ChannelFragment();
                 manager.beginTransaction().add(R.id.ui_content, fragment4).commitAllowingStateLoss();
                 channelFragment = fragment4;
                 break;
             case R.id.refresh_feed:
-                if (channelFragment!=null){
+                if (channelFragment != null) {
                     channelFragment.refresh();
                 }
                 break;
             case R.id.refresh_open:
-                if (channelFragment!=null){
+                if (channelFragment != null) {
                     channelFragment.swipeEnableChange();
                 }
                 break;
             default:
                 hideAll();
-                FeedConfig.getInstance()
-                        .setPlayerStyle(FeedConfig.STYLE_WEB);
+                FeedConfig.getInstance().setPlayerStyle(FeedConfig.STYLE_WEB);
                 ChannelFragment fragment3 = new ChannelFragment();
                 manager.beginTransaction().add(R.id.ui_content, fragment3).commitAllowingStateLoss();
-
                 break;
         }
         return super.onOptionsItemSelected(item);
     }
+
     private ChannelFragment channelFragment;
+
     private void showDefault() {
         hideAll();
-
         ChannelFragment fragment = new ChannelFragment();
         manager.beginTransaction().add(R.id.ui_content, fragment).commitAllowingStateLoss();
         channelFragment = fragment;

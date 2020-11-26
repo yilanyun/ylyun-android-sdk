@@ -1,43 +1,43 @@
 package com.yilan.sdk.sdkdemo;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.widget.FrameLayout;
+import android.support.v4.app.FragmentActivity;
+import android.view.ViewGroup;
 
-import com.yilan.sdk.common.util.ExecutorUtil;
 import com.yilan.sdk.ylad.YLAdSimpleListener;
 import com.yilan.sdk.ylad.constant.YLAdConstants;
 import com.yilan.sdk.ylad.engine.IYLAdEngine;
 import com.yilan.sdk.ylad.entity.YLAdEntity;
 import com.yilan.sdk.ylad.service.AdEngineService;
 
-/**
- * Author And Date: liurongzhi on 2020/1/20.
- * Description: com.yilan.sdk.sdkdemo
- */
-public class SplashActivity extends Activity {
+public class SplashActivity extends FragmentActivity {
     private IYLAdEngine splashEngine;
-
+    private ViewGroup spContainer;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        spContainer = findViewById(R.id.sp_container);
         splashEngine = AdEngineService.instance.createEngine(YLAdConstants.AdName.SPLASH);
         if (!splashEngine.hasAd()) {
-            jumpToMain();
+            spContainer.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    jumpToMain();
+                }
+            },1500);
             return;
         }
-        ExecutorUtil.instance.executeInMain(new Runnable() {
+        spContainer.postDelayed(new Runnable() {
             @Override
             public void run() {
                 if (!isFinish && noAd) {
                     jumpToMain();
                 }
             }
-        }, 3000);
-        FrameLayout rootView = findViewById(R.id.sp_container);
+        },1500);
         splashEngine.setAdListener(new YLAdSimpleListener() {
             @Override
             public void onSuccess(int source, boolean type, YLAdEntity entity) {
@@ -45,6 +45,7 @@ public class SplashActivity extends Activity {
                 System.out.println("-------onSuccess:" + type);
                 noAd = false;
             }
+
 
             @Override
             public void onShow(int source, boolean type, YLAdEntity entity) {
@@ -58,6 +59,7 @@ public class SplashActivity extends Activity {
                 System.out.println("-------onError:" + msg);
                 jumpToMain();
             }
+
 
             @Override
             public void onSkip(int source, boolean type, YLAdEntity entity) {
@@ -86,7 +88,7 @@ public class SplashActivity extends Activity {
                 jumpToMain();
             }
         });
-        splashEngine.request(rootView);
+        splashEngine.request(spContainer);
 
     }
 

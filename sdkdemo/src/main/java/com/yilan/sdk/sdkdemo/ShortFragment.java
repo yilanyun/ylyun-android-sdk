@@ -5,44 +5,31 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.yilan.sdk.sdkdemo.view.TitleLayout;
 import com.yilan.sdk.ui.little.YLLittleVideoFragment;
 import com.yilan.sdk.ui.littlevideo.KSLittleVideoFragment;
 import com.yilan.sdk.ui.web.WebFragment;
 
 import java.util.List;
 
-public class ShortFragment extends BaseFragment {
+public class ShortFragment extends BaseFragment implements TitleLayout.OptionsItemSelectedListener {
 
-    private boolean hasInitMenu = false;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_short, container, false);
-        setHasOptionsMenu(true);
         return view;
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-    }
-
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.short_menu, menu);
-        if (!hasInitMenu) {
-            showDefault();
-        }
-        hasInitMenu = true;
+        showDefault();
     }
 
     @Override
@@ -68,11 +55,17 @@ public class ShortFragment extends BaseFragment {
         return super.onOptionsItemSelected(item);
     }
 
-    YLLittleVideoFragment fragment;
+    Fragment fragment;
 
     private void showDefault() {
         hideAll();
         fragment = YLLittleVideoFragment.newInstance();
+        manager.beginTransaction().replace(R.id.short_content, fragment).commitAllowingStateLoss();
+    }
+
+    private void showKsDefault() {
+        hideAll();
+        fragment = KSLittleVideoFragment.newInstance();
         manager.beginTransaction().replace(R.id.short_content, fragment).commitAllowingStateLoss();
     }
 
@@ -98,6 +91,4 @@ public class ShortFragment extends BaseFragment {
     public void onDestroy() {
         super.onDestroy();
     }
-
-
 }

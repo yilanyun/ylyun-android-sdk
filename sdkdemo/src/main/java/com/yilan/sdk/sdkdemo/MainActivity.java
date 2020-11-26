@@ -15,12 +15,14 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.WindowManager;
-import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.yilan.sdk.data.entity.MediaInfo;
+import com.yilan.sdk.data.user.YLUser;
+import com.yilan.sdk.sdkdemo.view.TitleLayout;
 import com.yilan.sdk.ui.configs.YLUIConfig;
 import com.yilan.sdk.ui.configs.callback.ShareCallback;
 import com.yilan.sdk.ui.little.YLLittleVideoFragment;
@@ -31,20 +33,19 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements WebFragment.OnVideoChangeListener {
 
-    private FrameLayout mContent;
+    private TitleLayout mTitleLayout;
     private FragmentManager manager;
-    private HyBirdFragment webFragment;
     private ShortFragment littleVideoFragment;
     private MyFragment myFragment;
     private UIFragment uiFragment;
 
+    private YLUser.LoginStateChange loginStateChange;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        mContent = findViewById(R.id.content);
+        mTitleLayout = findViewById(R.id.layout_common_title);
         final BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
@@ -55,7 +56,6 @@ public class MainActivity extends AppCompatActivity implements WebFragment.OnVid
                 navigation.setSelectedItemId(R.id.navigation_home);
             }
         });
-
         if (Build.VERSION.SDK_INT >= 23) {
             checkAndRequestPermission();
         }
@@ -68,9 +68,14 @@ public class MainActivity extends AppCompatActivity implements WebFragment.OnVid
                 builder.show();
             }
         });
-
+        loginStateChange = new YLUser.LoginStateChange() {
+            @Override
+            public void onStateChange(boolean isLogin) {
+                Log.e("login", "登陆状态：" + isLogin);
+            }
+        };
+        YLUser.getInstance().addListener(loginStateChange);
         YLLittleVideoFragment.preloadVideo();
-
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -86,15 +91,8 @@ public class MainActivity extends AppCompatActivity implements WebFragment.OnVid
                         uiFragment = new UIFragment();
                         manager.beginTransaction().add(R.id.content, uiFragment, UIFragment.class.getSimpleName()).commitAllowingStateLoss();
                     }
-                    return true;
-                case R.id.navigation_dashboard:
-                    hideAll();
-                    if (webFragment != null) {
-                        manager.beginTransaction().show(webFragment).commitAllowingStateLoss();
-                    } else {
-                        webFragment = new HyBirdFragment();
-                        manager.beginTransaction().add(R.id.content, webFragment, HyBirdFragment.class.getSimpleName()).commitAllowingStateLoss();
-                    }
+                    mTitleLayout.setOptionsMenu(MainActivity.this, R.menu.ui_menu);
+                    mTitleLayout.onOptionsItemSelectedListener(uiFragment);
                     return true;
                 case R.id.navigation_my:
                     hideAll();
@@ -104,6 +102,7 @@ public class MainActivity extends AppCompatActivity implements WebFragment.OnVid
                         myFragment = new MyFragment();
                         manager.beginTransaction().add(R.id.content, myFragment, MyFragment.class.getSimpleName()).commitAllowingStateLoss();
                     }
+                    mTitleLayout.setActionInvisible();
                     return true;
                 case R.id.navigation_little:
                     hideAll();
@@ -113,6 +112,8 @@ public class MainActivity extends AppCompatActivity implements WebFragment.OnVid
                         littleVideoFragment = new ShortFragment();
                         manager.beginTransaction().add(R.id.content, littleVideoFragment, ShortFragment.class.getSimpleName()).commitAllowingStateLoss();
                     }
+                    mTitleLayout.setOptionsMenu(MainActivity.this, R.menu.short_menu);
+                    mTitleLayout.onOptionsItemSelectedListener(littleVideoFragment);
                     return true;
             }
             return false;
@@ -160,14 +161,14 @@ public class MainActivity extends AppCompatActivity implements WebFragment.OnVid
                     WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         }
     }
+
     /**
-     *
      * ----------非常重要----------
-     *
+     * <p>
      * Android6.0以上的权限适配简单示例：
-     *
+     * <p>
      * 如果targetSDKVersion >= 23，那么必须要申请到所需要的权限，再调用广点通SDK，否则广点通SDK不会工作。
-     *
+     * <p>
      * Demo代码里是一个基本的权限申请示例，请开发者根据自己的场景合理地编写这部分代码来实现权限申请。
      * 注意：下面的`checkSelfPermission`和`requestPermissions`方法都是在Android6.0的SDK中增加的API，如果您的App还没有适配到Android6.0以上，则不需要调用这些方法，直接调用广点通SDK即可。
      */
