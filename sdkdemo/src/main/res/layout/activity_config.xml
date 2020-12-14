@@ -243,6 +243,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="广告测试入口" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="testStream"
+                android:text="信息流测试入口" />
         </LinearLayout>
     </ScrollView>
 

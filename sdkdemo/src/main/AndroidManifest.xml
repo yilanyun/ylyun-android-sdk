@@ -67,6 +67,7 @@
             android:launchMode="singleTask" />
         <activity android:name=".ad.ADTestActivity" />
         <activity android:name=".ad.reward.RewardVideoActivity" />
+        <activity android:name=".stream.StreamTestActivity"/>
     </application>
 
 </manifest>

@@ -7,7 +7,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 408
-        versionName "sdkdemo-3.1.0.0"
+        versionName "sdkdemo-3.2.0.0"
 
     }
 
@@ -41,12 +41,6 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:3.11.0'
     implementation 'com.google.code.gson:gson:2.8.5'
 
-
-    // 阿里云 dns
-    implementation('com.aliyun.ams:alicloud-android-httpdns:1.2.3@aar') {
-        transitive true
-    }
-
     // ijk
     implementation 'tv.danmaku.ijk.media:ijkplayer-java:0.8.8'
     implementation 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.8.8'
@@ -57,7 +51,7 @@ dependencies {
 
 
     //一览sdk
-    implementation "com.yilan.sdk:ui:3.1.0.0"
+    implementation "com.yilan.sdk:ui:3.2.0.0"
     implementation 'com.android.support:multidex:1.0.3'
 
 }

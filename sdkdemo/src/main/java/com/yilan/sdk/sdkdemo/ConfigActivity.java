@@ -12,6 +12,7 @@ import android.widget.ToggleButton;
 import com.yilan.sdk.data.YLInit;
 import com.yilan.sdk.sdkdemo.ad.ADTestActivity;
 import com.yilan.sdk.sdkdemo.netstate.NetStateActivity;
+import com.yilan.sdk.sdkdemo.stream.StreamTestActivity;
 import com.yilan.sdk.ui.YLUIInit;
 import com.yilan.sdk.ui.configs.CommentConfig;
 import com.yilan.sdk.ui.configs.FeedConfig;
@@ -204,6 +205,10 @@ public class ConfigActivity extends AppCompatActivity implements
     @Override
     protected void onDestroy() {
         super.onDestroy();
+    }
+
+    public void testStream(View view) {
+        startActivity(new Intent(ConfigActivity.this, StreamTestActivity.class));
     }
 
 }
