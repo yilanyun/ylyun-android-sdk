@@ -1,13 +1,12 @@
 package com.yilan.sdk.sdkdemo.ad.reward;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import com.yilan.sdk.common.ui.dialog.LoadingDialog;
 import com.yilan.sdk.common.util.ToastUtil;
 import com.yilan.sdk.sdkdemo.R;
+import com.yilan.sdk.sdkdemo.ad.BaseAdActivity;
 import com.yilan.sdk.sdkdemo.util.Utils;
 import com.yilan.sdk.ylad.YLAdSimpleListener;
 import com.yilan.sdk.ylad.constant.YLAdConstants;
@@ -16,20 +15,16 @@ import com.yilan.sdk.ylad.entity.AdState;
 import com.yilan.sdk.ylad.entity.YLAdEntity;
 import com.yilan.sdk.ylad.manager.YLAdManager;
 
-public class RewardVideoActivity extends AppCompatActivity {
+public class RewardVideoActivity extends BaseAdActivity {
 
     IYLAdEngine rewardEngine;
     LinearLayout container;
-    LoadingDialog dialog;
-
-    boolean succeed = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reward_video);
         container = findViewById(R.id.container);
-        dialog = new LoadingDialog(this);
         rewardEngine = YLAdManager.with(this).getEngine(YLAdConstants.AdName.REWARD_VIDEO, "");
     }
 
@@ -72,6 +67,13 @@ public class RewardVideoActivity extends AppCompatActivity {
             public void onVideoStart(int source, boolean type, YLAdEntity entity) {
                 super.onVideoStart(source, type, entity);
                 ToastUtil.show(RewardVideoActivity.this, "视频播放开始");
+            }
+
+            @Override
+            public void onAdEmpty(int source, boolean type, YLAdEntity entity) {
+                super.onAdEmpty(source, type, entity);
+                dialog.dismiss();
+                ToastUtil.show(context, "广告为空，请先在一览云后台配置该广告！");
             }
         });
         rewardEngine.preRequest(container);

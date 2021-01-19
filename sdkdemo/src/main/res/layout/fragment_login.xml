@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:clickable="true"
+    android:orientation="vertical"
+    tools:context=".demo.LoginFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="176dp"
+        android:background="@drawable/side_nav_bar"
+        android:gravity="bottom"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:paddingTop="8dp"
+            android:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/user_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/user_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="italic" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <EditText
+            android:id="@+id/nick"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:hint="nick"
+            android:text="VaaS" />
+
+
+        <EditText
+            android:id="@+id/avatar"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:hint="avatar"
+            android:text="http://avatar.com" />
+
+
+        <EditText
+            android:id="@+id/phone"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:hint="phone"
+            android:text="13515613406" />
+
+        <EditText
+            android:id="@+id/userid"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:hint="userId"
+            android:text="VaaS-2020" />
+
+
+        <Button
+            android:id="@+id/login"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="登陆" />
+
+        <Button
+            android:id="@+id/logout"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:text="退出" />
+
+        <Button
+            android:id="@+id/gettoken"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:text="获取user" />
+
+    </LinearLayout>
+
+</LinearLayout>

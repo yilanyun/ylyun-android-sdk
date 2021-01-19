@@ -88,6 +88,14 @@ public class ShortFragment extends BaseFragment implements TitleLayout.OptionsIt
     }
 
     @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (fragment != null) {
+            fragment.setUserVisibleHint(isVisibleToUser);
+        }
+    }
+
+    @Override
     public void onDestroy() {
         super.onDestroy();
     }

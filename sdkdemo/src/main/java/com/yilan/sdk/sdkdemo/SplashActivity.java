@@ -10,40 +10,36 @@ import com.yilan.sdk.ylad.YLAdSimpleListener;
 import com.yilan.sdk.ylad.constant.YLAdConstants;
 import com.yilan.sdk.ylad.engine.IYLAdEngine;
 import com.yilan.sdk.ylad.entity.YLAdEntity;
-import com.yilan.sdk.ylad.service.AdEngineService;
+import com.yilan.sdk.ylad.manager.YLAdManager;
 
+/**
+ * Author And Date: liurongzhi on 2020/1/20.
+ * Description: com.yilan.sdk.sdkdemo
+ */
 public class SplashActivity extends FragmentActivity {
     private IYLAdEngine splashEngine;
     private ViewGroup spContainer;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         spContainer = findViewById(R.id.sp_container);
-        splashEngine = AdEngineService.instance.createEngine(YLAdConstants.AdName.SPLASH);
+        splashEngine = YLAdManager.with(this).getEngine(YLAdConstants.AdName.SPLASH);
         if (!splashEngine.hasAd()) {
             spContainer.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     jumpToMain();
                 }
-            },1500);
+            }, 2000);
             return;
         }
-        spContainer.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if (!isFinish && noAd) {
-                    jumpToMain();
-                }
-            }
-        },1500);
         splashEngine.setAdListener(new YLAdSimpleListener() {
             @Override
             public void onSuccess(int source, boolean type, YLAdEntity entity) {
                 super.onSuccess(source, type, entity);
                 System.out.println("-------onSuccess:" + type);
-                noAd = false;
             }
 
 
@@ -60,6 +56,12 @@ public class SplashActivity extends FragmentActivity {
                 jumpToMain();
             }
 
+            @Override
+            public void onRenderError(int source, YLAdEntity entity, int code, String msg) {
+                super.onRenderError(source, entity, code, msg);
+                System.out.println("-------onRenderError:" + msg);
+                jumpToMain();
+            }
 
             @Override
             public void onSkip(int source, boolean type, YLAdEntity entity) {
@@ -72,9 +74,7 @@ public class SplashActivity extends FragmentActivity {
             public void onTimeOver(int source, boolean type, YLAdEntity entity) {
                 super.onTimeOver(source, type, entity);
                 System.out.println("-------onTimeOver:");
-                if (!isStop) {
-                    jumpToMain();
-                }
+                jumpToMain();
             }
 
             @Override
@@ -92,21 +92,6 @@ public class SplashActivity extends FragmentActivity {
 
     }
 
-    private boolean isStop = false;
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        isStop = false;
-        jumpToMain();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        isStop = true;
-    }
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -114,12 +99,18 @@ public class SplashActivity extends FragmentActivity {
     }
 
     private boolean isFinish = false;
-    private boolean noAd = true;
 
     private void jumpToMain() {
         SplashActivity.this.finish();
         if (isFinish) return;
         isFinish = true;
-        SplashActivity.this.startActivity(new Intent(this, MainActivity.class));
+        if (BuildConfig.buildType == 0) {
+            SplashActivity.this.startActivity(new Intent(this, MainDemoActivity.class));
+        } else if (BuildConfig.buildType == 1) {
+            SplashActivity.this.startActivity(new Intent(this, MainActivity.class));
+        } else {
+            SplashActivity.this.startActivity(new Intent(this, MainPagerActivity.class));
+        }
+
     }
 }

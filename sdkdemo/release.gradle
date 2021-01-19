@@ -1,5 +1,8 @@
 
-
+def String type_demo = "0"
+def String type_normal = "1"
+def String type_pager = "2"
+def String buildType = type_demo
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -8,7 +11,7 @@ android {
         targetSdkVersion 28
         versionCode 408
         versionName "sdkdemo-3.2.0.0"
-
+        buildConfigField('int', 'buildType', buildType)
     }
 
     buildTypes {
@@ -51,7 +54,7 @@ dependencies {
 
 
     //一览sdk
-    implementation "com.yilan.sdk:ui:3.3.0.0"
+    implementation "com.yilan.sdk:ui:3.3.1.0"
     implementation 'com.android.support:multidex:1.0.3'
 
 }

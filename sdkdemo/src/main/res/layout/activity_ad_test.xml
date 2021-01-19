@@ -32,16 +32,32 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:gravity="center"
-            android:onClick="testReward"
-            android:text="测试激励视频广告" />
+            android:onClick="testSplash"
+            android:text="开屏广告" />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:gravity="center"
-            android:onClick="testFull"
-            android:text="测试xxx" />
+            android:onClick="testReward"
+            android:text="激励视频广告" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:onClick="testBanner"
+            android:text="banner/express_Banner" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:onClick="testInterstitial"
+            android:text="插屏广告" />
 
         <Button
             android:layout_width="match_parent"
@@ -49,7 +65,7 @@
             android:layout_marginTop="10dp"
             android:gravity="center"
             android:onClick="testFeedList"
-            android:text="测试xxx" />
+            android:text="Feed广告" />
 
         <Button
             android:layout_width="match_parent"

@@ -31,24 +31,28 @@ public class BaseFragment extends Fragment {
     }
 
     private void setUserHint(boolean isVisibleToUser) {
-        List<Fragment> fragments = manager.getFragments();
-        if (fragments != null) {
-            for (Fragment f : fragments) {
-                if (f instanceof WebFragment) {
-                    WebFragment webFragment = (WebFragment) f;
-                    webFragment.setUserVisibleHint(isVisibleToUser);
+        if (getHost() != null) {
+            List<Fragment> fragments = manager.getFragments();
+            if (fragments != null) {
+                for (Fragment f : fragments) {
+                    if (f instanceof WebFragment) {
+                        WebFragment webFragment = (WebFragment) f;
+                        webFragment.setUserVisibleHint(isVisibleToUser);
+                    }
                 }
             }
         }
     }
 
     private void onHidden(boolean hidden) {
-        List<Fragment> fragments = manager.getFragments();
-        if (fragments != null) {
-            for (Fragment f : fragments) {
-                if (f instanceof WebFragment) {
-                    WebFragment webFragment = (WebFragment) f;
-                    webFragment.onHiddenChanged(hidden);
+        if (getHost() != null) {
+            List<Fragment> fragments = manager.getFragments();
+            if (fragments != null) {
+                for (Fragment f : fragments) {
+                    if (f instanceof WebFragment) {
+                        WebFragment webFragment = (WebFragment) f;
+                        webFragment.onHiddenChanged(hidden);
+                    }
                 }
             }
         }

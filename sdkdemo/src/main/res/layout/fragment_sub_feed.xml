@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="20dp"
+    android:paddingTop="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/icon_sub_feed" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:text="局部信息流"
+            android:textColor="#FF3B98FC"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+
+
+    <!--<TextView
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:drawableRight="@drawable/arrow_left"
+        android:gravity="center_vertical"
+        android:text="横划型 - 横屏"
+        android:textColor="#3F3F3F"
+        android:textSize="15sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#efefef" />-->
+
+    <TextView
+        android:id="@+id/littleCard"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:drawableRight="@drawable/arrow_left"
+        android:gravity="center_vertical"
+        android:text="横划型 - 竖屏"
+        android:textColor="#3F3F3F"
+        android:textSize="15sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#efefef" />
+
+    <TextView
+        android:id="@+id/feedSingle"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:drawableRight="@drawable/arrow_left"
+        android:gravity="center_vertical"
+        android:text="单卡型 - 横屏"
+        android:textColor="#3F3F3F"
+        android:textSize="15sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#efefef" />
+
+    <TextView
+        android:id="@+id/littleSingle"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:drawableRight="@drawable/arrow_left"
+        android:gravity="center_vertical"
+        android:text="单卡型 - 竖屏"
+        android:textColor="#3F3F3F"
+        android:textSize="15sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#efefef" />
+
+</LinearLayout>

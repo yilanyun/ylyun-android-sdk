@@ -4,6 +4,7 @@
     android:layout_height="50dp">
 
     <ImageView
+        android:id="@+id/logo"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"

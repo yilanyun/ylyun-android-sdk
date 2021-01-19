@@ -19,8 +19,11 @@ import com.yilan.sdk.sdkdemo.R;
 public class TitleLayout extends FrameLayout implements View.OnClickListener {
 
     private int menuResId;
+    private ImageView mLogo;
     private ImageView mActionMore;
     private OptionsItemSelectedListener optionsItemSelectedListener;
+    private OnLogoClickListener onLogoClickListener;
+    private OnSettingClickedListener onSettingClickedListener;
 
     public TitleLayout(@NonNull Context context) {
         super(context);
@@ -36,8 +39,18 @@ public class TitleLayout extends FrameLayout implements View.OnClickListener {
     private void init(Context context) {
         View layout = LayoutInflater.from(context).inflate(R.layout.layout_title, null);
         addView(layout);
+        mLogo = layout.findViewById(R.id.logo);
         mActionMore = layout.findViewById(R.id.img_action);
+        mLogo.setOnClickListener(this);
         mActionMore.setOnClickListener(this);
+    }
+
+    public void setOnSettingClickedListener(OnSettingClickedListener onSettingClickedListener) {
+        this.onSettingClickedListener = onSettingClickedListener;
+    }
+
+    public void setOnLogoClickListener(OnLogoClickListener onLogoClickListener) {
+        this.onLogoClickListener = onLogoClickListener;
     }
 
     public void onOptionsItemSelectedListener(OptionsItemSelectedListener listener) {
@@ -57,11 +70,21 @@ public class TitleLayout extends FrameLayout implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.img_action) {
+            if (onSettingClickedListener == null) {
             showMenu();
+            } else {
+                if (!onSettingClickedListener.onSettingClicked()) {
+                    showMenu();
+                }
+            }
+        } else if (v.getId() == R.id.logo) {
+            if (onLogoClickListener != null)
+                onLogoClickListener.onLogoClicked(v);
         }
     }
 
     private void showMenu() {
+        if (menuResId <= 0) return;
         PopupMenu popupMenu = new PopupMenu(getContext(), mActionMore);
         popupMenu.inflate(menuResId);
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
@@ -78,6 +101,14 @@ public class TitleLayout extends FrameLayout implements View.OnClickListener {
 
     public interface OptionsItemSelectedListener {
         boolean onOptionsItemSelected(MenuItem item);
+    }
+
+    public interface OnLogoClickListener {
+        void onLogoClicked(View v);
+    }
+
+    public interface OnSettingClickedListener {
+        boolean onSettingClicked();
     }
 
 }
