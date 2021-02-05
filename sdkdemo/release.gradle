@@ -2,7 +2,7 @@
 def String type_demo = "0"
 def String type_normal = "1"
 def String type_pager = "2"
-def String buildType = type_demo
+def String buildType = type_normal
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -15,8 +15,12 @@ android {
     }
 
     buildTypes {
+        debug {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -54,7 +58,7 @@ dependencies {
 
 
     //一览sdk
-    implementation "com.yilan.sdk:ui:3.3.1.0"
+    implementation "com.yilan.sdk:ui:3.3.1.4"
     implementation 'com.android.support:multidex:1.0.3'
 
 }

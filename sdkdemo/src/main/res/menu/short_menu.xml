@@ -13,6 +13,11 @@
         android:title="Native-类快手小视频" />
 
     <item
+        android:id="@+id/natvie_hybrid"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="混合信息流" />
+
+    <item
         android:id="@+id/hybird"
         android:icon="@drawable/ic_home_black_24dp"
         android:title="H5-小视频" />

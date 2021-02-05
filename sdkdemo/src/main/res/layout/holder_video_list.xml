@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+        android:layout_width="match_parent"
+        android:src="@drawable/yl_ad_little_bg"
+        android:scaleType="fitXY"
+        android:layout_height="match_parent"/>
+    <com.yilan.sdk.player.ylplayer.YLPlayerView
+        android:id="@+id/player_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+    <include layout="@layout/yl_little_item_right"/>
+</FrameLayout>

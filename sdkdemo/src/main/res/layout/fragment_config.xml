@@ -80,6 +80,12 @@
                 android:layout_height="40dp"
                 android:text="分享按钮开关" />
 
+            <Switch
+                android:id="@+id/little_loop_style"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="循环模式" />
+
 
         </LinearLayout>
 
@@ -155,6 +161,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:text="分享按钮开关" />
+
+            <Switch
+                android:id="@+id/feed_show_avatar"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="是否展示作者头像" />
 
         </LinearLayout>
 

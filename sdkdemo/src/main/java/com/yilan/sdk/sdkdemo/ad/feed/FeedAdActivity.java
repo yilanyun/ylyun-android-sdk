@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import com.yilan.sdk.sdkdemo.R;
 import com.yilan.sdk.sdkdemo.ad.BaseAdActivity;
+import com.yilan.sdk.ylad.YLAdListener;
 import com.yilan.sdk.ylad.constant.YLAdConstants;
 import com.yilan.sdk.ylad.manager.YLAdManager;
 
@@ -33,6 +34,17 @@ public class FeedAdActivity extends BaseAdActivity {
 
         //创建广告管理器
         adManager = YLAdManager.with(this);
+        adManager.setAdListener(new YLAdListener(){
+            @Override
+            public void onSuccess(String adType, int source, String reqId, String pid) {
+                super.onSuccess(adType, source, reqId, pid);
+            }
+
+            @Override
+            public void onError(String adType, int source, String reqId, int code, String msg, String pid) {
+                super.onError(adType, source, reqId, code, msg, pid);
+            }
+        });
 
         for (int i = 0; i < 30; i++) {
             arrayList.add(i + "");
@@ -40,6 +52,7 @@ public class FeedAdActivity extends BaseAdActivity {
 
         //通过广告管理器，将广告插入到列表数据中
         adManager.insertEngineByName(YLAdConstants.AdName.FEED, arrayList);
+
 
         RecyclerView.Adapter adapter = new FeedAdapter(arrayList);
         recyclerView.setAdapter(adapter);

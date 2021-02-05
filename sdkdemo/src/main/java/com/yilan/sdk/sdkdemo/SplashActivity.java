@@ -6,10 +6,9 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.view.ViewGroup;
 
-import com.yilan.sdk.ylad.YLAdSimpleListener;
+import com.yilan.sdk.ylad.YLAdListener;
 import com.yilan.sdk.ylad.constant.YLAdConstants;
 import com.yilan.sdk.ylad.engine.IYLAdEngine;
-import com.yilan.sdk.ylad.entity.YLAdEntity;
 import com.yilan.sdk.ylad.manager.YLAdManager;
 
 /**
@@ -35,56 +34,50 @@ public class SplashActivity extends FragmentActivity {
             }, 2000);
             return;
         }
-        splashEngine.setAdListener(new YLAdSimpleListener() {
+        splashEngine.setAdListener(new YLAdListener() {
             @Override
-            public void onSuccess(int source, boolean type, YLAdEntity entity) {
-                super.onSuccess(source, type, entity);
-                System.out.println("-------onSuccess:" + type);
-            }
-
-
-            @Override
-            public void onShow(int source, boolean type, YLAdEntity entity) {
-                super.onShow(source, type, entity);
-                System.out.println("-------onShow:" + type);
+            public void onSuccess(String adType, int source, String reqId, String pid) {
+                super.onSuccess(adType, source, reqId, pid);
+                System.out.println("-------onSuccess:" + adType);
             }
 
             @Override
-            public void onError(int source, YLAdEntity entity, int code, String msg) {
-                super.onError(source, entity, code, msg);
+            public void onError(String adType, int source, String reqId, int code, String msg, String pid) {
+                super.onError(adType, source, reqId, code, msg, pid);
                 System.out.println("-------onError:" + msg);
                 jumpToMain();
             }
 
             @Override
-            public void onRenderError(int source, YLAdEntity entity, int code, String msg) {
-                super.onRenderError(source, entity, code, msg);
+            public void onRenderError(String adType, int source, String reqId, int code, String msg, String pid) {
+                super.onRenderError(adType, source, reqId, code, msg, pid);
                 System.out.println("-------onRenderError:" + msg);
                 jumpToMain();
             }
 
             @Override
-            public void onSkip(int source, boolean type, YLAdEntity entity) {
-                super.onSkip(source, type, entity);
+            public void onShow(String adType, int source, String reqId, String pid) {
+                super.onShow(adType, source, reqId, pid);
+                System.out.println("-------onShow:" + adType);
+            }
+
+            @Override
+            public void onSkip(String adType, int source, String reqId, String pid) {
+                super.onSkip(adType, source, reqId, pid);
                 System.out.println("-------onSkip:");
                 jumpToMain();
             }
 
             @Override
-            public void onTimeOver(int source, boolean type, YLAdEntity entity) {
-                super.onTimeOver(source, type, entity);
+            public void onTimeOver(String adType, int source, String reqId, String pid) {
+                super.onTimeOver(adType, source, reqId, pid);
                 System.out.println("-------onTimeOver:");
                 jumpToMain();
             }
 
             @Override
-            public void onClick(int source, boolean type, YLAdEntity entity) {
-                super.onClick(source, type, entity);
-            }
-
-            @Override
-            public void onAdEmpty(int source, boolean type, YLAdEntity entity) {
-                super.onAdEmpty(source, type, entity);
+            public void onAdEmpty(String adType, int source, String reqId, String pid) {
+                super.onAdEmpty(adType, source, reqId, pid);
                 jumpToMain();
             }
         });

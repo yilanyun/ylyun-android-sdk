@@ -72,6 +72,14 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:gravity="center"
+            android:onClick="videoList"
+            android:text="小视频draw广告" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
             android:onClick="testConfigFeedList"
             android:text="测试xxx" />
 

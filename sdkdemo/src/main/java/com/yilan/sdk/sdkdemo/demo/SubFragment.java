@@ -90,7 +90,7 @@ public class SubFragment extends Fragment implements SeekBar.OnSeekBarChangeList
     private void showLittleSingle(View view) {
         if (littleStream == null) {
             littleStream = StreamManager.create().getLittleStream();
-            int screenWidth = FSScreen.getScreenWidth(seekBar.getContext());
+            int screenWidth = FSScreen.getScreenWidth();
             ViewGroup.LayoutParams params = container.getLayoutParams();
             params.width = screenWidth / 2;
             container.setLayoutParams(params);
@@ -125,7 +125,7 @@ public class SubFragment extends Fragment implements SeekBar.OnSeekBarChangeList
 
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
-        int screenWidth = FSScreen.getScreenWidth(seekBar.getContext());
+        int screenWidth = FSScreen.getScreenWidth();
         ViewGroup.LayoutParams params = container.getLayoutParams();
         params.width = screenWidth * seekBar.getProgress() / 100;
         container.setLayoutParams(params);

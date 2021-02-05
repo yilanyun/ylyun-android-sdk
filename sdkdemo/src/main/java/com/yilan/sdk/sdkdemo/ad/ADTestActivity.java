@@ -16,6 +16,7 @@ import com.yilan.sdk.sdkdemo.ad.feed.FeedAdActivity;
 import com.yilan.sdk.sdkdemo.ad.interstitial.InterstitialAdActivity;
 import com.yilan.sdk.sdkdemo.ad.reward.RewardVideoActivity;
 import com.yilan.sdk.sdkdemo.ad.splash.SplashAdActivity;
+import com.yilan.sdk.sdkdemo.ad.videoList.VideoListAdActivity;
 
 
 public class ADTestActivity extends AppCompatActivity {
@@ -47,6 +48,10 @@ public class ADTestActivity extends AppCompatActivity {
 
     public void testFeedList(View view) {
         startAct(FeedAdActivity.class);
+    }
+
+    public void videoList(View view) {
+        startAct(VideoListAdActivity.class);
     }
 
     public void testConfigFeedList(View view) {

@@ -113,12 +113,12 @@
 
         <FrameLayout
             android:id="@+id/left_container"
-            android:layout_width="240dp"
+            android:layout_width="280dp"
             android:layout_height="match_parent" />
 
         <FrameLayout
             android:id="@+id/right_container"
-            android:layout_width="240dp"
+            android:layout_width="280dp"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true" />
 

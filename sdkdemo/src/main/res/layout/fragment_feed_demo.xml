@@ -103,7 +103,8 @@
         android:layout_height="1dp"
         android:background="#efefef" />
 
-    <!--<TextView
+    <TextView
+        android:id="@+id/hybrid_feed"
         android:layout_width="match_parent"
         android:layout_height="46dp"
         android:drawableRight="@drawable/arrow_left"
@@ -115,7 +116,22 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#efefef" />-->
+        android:background="#efefef" />
+
+    <TextView
+        android:id="@+id/hybrid_feed_demo"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:drawableRight="@drawable/arrow_left"
+        android:gravity="center_vertical"
+        android:text="混合式信息流(demo)"
+        android:textColor="#3F3F3F"
+        android:textSize="15sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#efefef" />
 
 
 </LinearLayout>
