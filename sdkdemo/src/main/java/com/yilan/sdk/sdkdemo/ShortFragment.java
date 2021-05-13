@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.yilan.sdk.sdkdemo.view.TitleLayout;
+import com.yilan.sdk.ui.hybridfeed.HybridFeedFragment;
+import com.yilan.sdk.ui.hybridfeed.HybridMultiFeedFragment;
 import com.yilan.sdk.ui.little.YLLittleVideoFragment;
 import com.yilan.sdk.ui.littlevideo.KSLittleVideoFragment;
 import com.yilan.sdk.ui.web.WebFragment;
@@ -38,17 +40,25 @@ public class ShortFragment extends BaseFragment implements TitleLayout.OptionsIt
             case R.id.natvie:
                 showDefault();
                 break;
-
             case R.id.hybird:
                 hideAll();
-                WebFragment fragment2 = WebFragment.newInstance("https://sv.yilan.tv/Starscream/ylmv/index.html?access_key=ylel2vek386q", "");
-//                WebFragment fragment2 = WebFragment.newInstance("https://openpre.yladm.com/ylmv/index.html?access_key=ylel2vek386q", "");
-                manager.beginTransaction().replace(R.id.short_content, fragment2).commitAllowingStateLoss();
+                fragment = WebFragment.newInstance("https://sv.yilan.tv/Starscream/ylmv/index.html?access_key=ylel2vek386q", "");
+                manager.beginTransaction().replace(R.id.short_content, fragment).commitAllowingStateLoss();
+                break;
+            case R.id.natvie_hybrid:
+                hideAll();
+                fragment = HybridFeedFragment.newInstance();
+                manager.beginTransaction().replace(R.id.short_content, fragment).commitAllowingStateLoss();
+                break;
+            case R.id.natvie_hybrid_double:
+                hideAll();
+                fragment = HybridMultiFeedFragment.newInstance();
+                manager.beginTransaction().replace(R.id.short_content, fragment).commitAllowingStateLoss();
                 break;
             case R.id.natvie_kuaishou:
                 hideAll();
-                KSLittleVideoFragment littleVideoFragment = KSLittleVideoFragment.newInstance();
-                manager.beginTransaction().replace(R.id.short_content, littleVideoFragment).commitAllowingStateLoss();
+                fragment = KSLittleVideoFragment.newInstance();
+                manager.beginTransaction().replace(R.id.short_content, fragment).commitAllowingStateLoss();
 
                 break;
         }

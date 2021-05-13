@@ -88,7 +88,9 @@ public class SplashActivity extends FragmentActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        splashEngine.onDestroy();
+        if (splashEngine != null) {
+            splashEngine.onDestroy();
+        }
     }
 
     private boolean isFinish = false;

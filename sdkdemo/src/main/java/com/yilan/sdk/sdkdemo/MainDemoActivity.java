@@ -27,6 +27,9 @@ import com.yilan.sdk.sdkdemo.demo.LoginFragment;
 import com.yilan.sdk.sdkdemo.demo.OtherFragment;
 import com.yilan.sdk.sdkdemo.demo.SubFeedFragment;
 import com.yilan.sdk.sdkdemo.view.TitleLayout;
+import com.yilan.sdk.sdkdemo.view.guide.TipGuideKey;
+import com.yilan.sdk.sdkdemo.view.guide.TipLightView;
+import com.yilan.sdk.sdkdemo.view.guide.TipViewHelper;
 import com.yilan.sdk.ui.configs.YLUIConfig;
 import com.yilan.sdk.ui.web.WebFragment;
 
@@ -82,6 +85,22 @@ public class MainDemoActivity extends AppCompatActivity implements WebFragment.O
         manager.beginTransaction().replace(R.id.content_sub_feed, subFeedFragment).commitAllowingStateLoss();
         otherFragment = new OtherFragment();
         manager.beginTransaction().replace(R.id.content_other, otherFragment).commitAllowingStateLoss();
+        getWindow().getDecorView().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                showTipsView();
+            }
+        },200);
+    }
+
+    private void showTipsView() {
+        View logo = mTitleLayout.findViewById(R.id.logo);
+        View img_action = mTitleLayout.findViewById(R.id.img_action);
+        TipViewHelper helper = new TipViewHelper(this,"aaa");
+        helper.addTipView(logo,"点击这里登陆", TipGuideKey.KEY_LOGIN);
+        helper.addTipView(img_action,"点击这里进行个性化设置", TipGuideKey.KEY_MENU_SETTING);
+        helper.setLightType(TipLightView.TipLightType.Rectangle);
+        helper.showTip();
     }
 
     private void onBackGroundClick(View v) {
@@ -109,7 +128,7 @@ public class MainDemoActivity extends AppCompatActivity implements WebFragment.O
     public boolean onSettingClicked() {
         slideContainer.setVisibility(View.VISIBLE);
         if (rightFragment == null) {
-            rightFragment = ConfigFragment.newInstance("", "");
+            rightFragment = ConfigFragment.newInstance();
             YLUIUtil.FragmentOperate.with(manager).add(R.id.right_container, rightFragment);
         } else {
             YLUIUtil.FragmentOperate.with(manager).show(rightFragment);
@@ -200,4 +219,21 @@ public class MainDemoActivity extends AppCompatActivity implements WebFragment.O
         super.onDestroy();
         YLUIConfig.getInstance().unRegisterShareCallBack();
     }
+
+    @Override
+    public void onBackPressed() {
+        if (leftFragment != null && leftFragment.isVisible()) {
+            YLUIUtil.FragmentOperate.with(manager).hide(leftFragment);
+            slideContainer.setVisibility(View.GONE);
+            return;
+        }
+        if (rightFragment != null && rightFragment.isVisible()) {
+            YLUIUtil.FragmentOperate.with(manager).hide(rightFragment);
+            slideContainer.setVisibility(View.GONE);
+            return;
+        }
+        super.onBackPressed();
+    }
+
+
 }

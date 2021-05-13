@@ -54,7 +54,7 @@ public class LoginFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         nick = ((EditText) view.findViewById(R.id.nick)).getText().toString();
         phone = ((EditText) view.findViewById(R.id.phone)).getText().toString();

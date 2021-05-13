@@ -2,15 +2,14 @@ package com.yilan.sdk.sdkdemo.ad.reward;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.yilan.sdk.common.util.ToastUtil;
 import com.yilan.sdk.sdkdemo.R;
 import com.yilan.sdk.sdkdemo.ad.BaseAdActivity;
 import com.yilan.sdk.sdkdemo.util.Utils;
-import com.yilan.sdk.ylad.IAdExtraDataListener;
 import com.yilan.sdk.ylad.YLAdListener;
-import com.yilan.sdk.ylad.config.YLAdConfig;
 import com.yilan.sdk.ylad.constant.YLAdConstants;
 import com.yilan.sdk.ylad.engine.IYLAdEngine;
 import com.yilan.sdk.ylad.entity.AdState;
@@ -20,30 +19,38 @@ public class RewardVideoActivity extends BaseAdActivity {
 
     IYLAdEngine rewardEngine;
     LinearLayout container;
+    EditText editText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reward_video);
         container = findViewById(R.id.container);
-        rewardEngine = YLAdManager.with(this).getEngine(YLAdConstants.AdName.REWARD_VIDEO, "");
-        //注册额外参数的回调监听
-        YLAdConfig.getInstance().registerAdExtraDataListener(new IAdExtraDataListener() {
+        editText = findViewById(R.id.edit_num);
+        findViewById(R.id.save).setOnClickListener(new View.OnClickListener() {
             @Override
-            public String getExtraData(int source) {
-                if (source == YLAdConstants.ALLI_TOUTIAO_STENCIL) {
-                    return "穿山甲额外参数";
-                } else if (source == YLAdConstants.ALLI_GDT_EXPRESS) {
-                    return "广点通额外参数";
+            public void onClick(View v) {
+                String s = editText.getText().toString().trim();
+                switch (s) {
+                    case "":
+                        rewardEngine = YLAdManager.with(RewardVideoActivity.this).getEngine(YLAdConstants.AdName.REWARD_VIDEO, "");
+                        break;
+                    case "2":
+                        rewardEngine = YLAdManager.with(RewardVideoActivity.this).getEngine(YLAdConstants.AdName.REWARD_VIDEO2, "");
+                        break;
+                    case "3":
+                        rewardEngine = YLAdManager.with(RewardVideoActivity.this).getEngine(YLAdConstants.AdName.REWARD_VIDEO3, "");
+                        break;
+                    case "4":
+                        rewardEngine = YLAdManager.with(RewardVideoActivity.this).getEngine(YLAdConstants.AdName.REWARD_VIDEO4, "");
+                        break;
+                    case "5":
+                        rewardEngine = YLAdManager.with(RewardVideoActivity.this).getEngine(YLAdConstants.AdName.REWARD_VIDEO5, "");
+                        break;
                 }
-                return null;
-            }
-
-            @Override
-            public String getUserId(int source) {
-                return null;
             }
         });
+        rewardEngine = YLAdManager.with(this).getEngine(YLAdConstants.AdName.REWARD_VIDEO, "");
     }
 
     public void requestReward(View view) {

@@ -1,5 +1,6 @@
 package com.yilan.sdk.sdkdemo.demo;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -7,9 +8,13 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.RadioGroup;
+import android.widget.SeekBar;
 import android.widget.Switch;
+import android.widget.TextView;
 
+import com.yilan.sdk.player.ylplayer.YLPlayerConfig;
 import com.yilan.sdk.sdkdemo.R;
 import com.yilan.sdk.ui.configs.CommentConfig;
 import com.yilan.sdk.ui.configs.FeedConfig;
@@ -23,7 +28,7 @@ import static com.yilan.sdk.ui.configs.CommentConfig.CommentType.SHOW_COMMENT_LI
 
 public class ConfigFragment extends Fragment {
 
-    public static ConfigFragment newInstance(String param1, String param2) {
+    public static ConfigFragment newInstance() {
         return new ConfigFragment();
     }
 
@@ -47,7 +52,7 @@ public class ConfigFragment extends Fragment {
     }
 
     private void initLittle(View view) {
-        final CommentConfig.CommentType commentType = LittleVideoConfig.getInstance().getCommentType();
+        CommentConfig.CommentType commentType = LittleVideoConfig.getInstance().getCommentType();
         RadioGroup group = view.findViewById(R.id.little_group);
         switch (commentType) {
             case SHOW_COMMENT_ALL:
@@ -61,43 +66,116 @@ public class ConfigFragment extends Fragment {
                 break;
         }
         group.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @SuppressLint("NonConstantResourceId")
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                switch (commentType) {
-                    case SHOW_COMMENT_ALL:
+                switch (checkedId) {
+                    case R.id.little_radio1:
                         LittleVideoConfig.getInstance().setCommentType(SHOW_COMMENT_ALL);
                         break;
-                    case SHOW_COMMENT_LIST:
+                    case R.id.little_radio2:
                         LittleVideoConfig.getInstance().setCommentType(SHOW_COMMENT_LIST);
                         break;
-                    case DISMISS_COMMENT:
+                    case R.id.little_radio3:
                         LittleVideoConfig.getInstance().setCommentType(DISMISS_COMMENT);
                         break;
                 }
             }
         });
 
-        final Switch like = view.findViewById(R.id.little_like);
-        like.setChecked(YLUIConfig.getInstance().islittleLikeShow());
-        like.setOnClickListener(new View.OnClickListener() {
+        Switch avatar = view.findViewById(R.id.little_avatar);
+        avatar.setChecked(LittleVideoConfig.getInstance().showPlayerAvatar());
+        avatar.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-                YLUIConfig.getInstance().littleLikeShow(like.isChecked());
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                YLUIConfig.getInstance().littleShowAvatar(isChecked);
+            }
+        });
+
+        Switch like = view.findViewById(R.id.little_like);
+        like.setChecked(YLUIConfig.getInstance().islittleLikeShow());
+        like.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                YLUIConfig.getInstance().littleLikeShow(isChecked);
             }
         });
 
         Switch share = view.findViewById(R.id.little_share);
         share.setChecked(YLUIConfig.getInstance().islittleShareShow());
-        share.setOnClickListener(new View.OnClickListener() {
+        share.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-                YLUIConfig.getInstance().littleShareShow(like.isChecked());
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                YLUIConfig.getInstance().littleShareShow(isChecked);
+            }
+        });
+
+
+        final Switch loopStyle = view.findViewById(R.id.little_loop_style);
+        loopStyle.setChecked(YLPlayerConfig.config().isVideoLoop());
+        loopStyle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                LittleVideoConfig.getInstance().setVideoLoop(isChecked);
+                loopStyle.setText(String.format("小视频播放模式(%s)", isChecked ? "循环" : "播放下一个"));
+            }
+        });
+
+        final TextView textSeek = view.findViewById(R.id.tv_little_seek);
+        SeekBar seekBar = view.findViewById(R.id.little_seek_bar);
+        int dpTitleBottom = LittleVideoConfig.getInstance().getDpTitleBottom();
+        seekBar.setMax(100);
+        seekBar.setProgress(dpTitleBottom);
+        textSeek.setText(String.format("小视频Title底部边距(%sdp)", dpTitleBottom));
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                if (fromUser) {
+                    LittleVideoConfig.getInstance().setDpTitleBottom(progress);
+                    textSeek.setText(String.format("小视频Title底部边距(%sdp)", progress));
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+        final TextView textHotSeek = view.findViewById(R.id.tv_little_hot_seek);
+        SeekBar seekBarHot = view.findViewById(R.id.little_hot_seek_bar);
+        int dpHotBarBottom = LittleVideoConfig.getInstance().getDpHotBarBottom();
+        seekBarHot.setMax(100);
+        seekBarHot.setProgress(dpHotBarBottom);
+        textHotSeek.setText(String.format("小视频热点底部边距(%sdp)", dpHotBarBottom));
+        seekBarHot.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                if (fromUser) {
+                    LittleVideoConfig.getInstance().setDpHotBarBottom(progress);
+                    textHotSeek.setText(String.format("小视频热点底部边距(%sdp)", progress));
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
             }
         });
     }
 
     private void initFeed(View view) {
-        final CommentConfig.CommentType commentType = PlayerConfig.getInstance().getCommentType();
+        CommentConfig.CommentType commentType = PlayerConfig.getInstance().getCommentType();
         RadioGroup group = view.findViewById(R.id.feed_group);
         switch (commentType) {
             case SHOW_COMMENT_ALL:
@@ -111,58 +189,76 @@ public class ConfigFragment extends Fragment {
                 break;
         }
         group.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @SuppressLint("NonConstantResourceId")
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                switch (commentType) {
-                    case SHOW_COMMENT_ALL:
+                switch (checkedId) {
+                    case R.id.feed_radio1:
                         PlayerConfig.getInstance().setCommentType(SHOW_COMMENT_ALL);
                         break;
-                    case SHOW_COMMENT_LIST:
+                    case R.id.feed_radio2:
                         PlayerConfig.getInstance().setCommentType(SHOW_COMMENT_LIST);
                         break;
-                    case DISMISS_COMMENT:
+                    case R.id.feed_radio3:
                         PlayerConfig.getInstance().setCommentType(DISMISS_COMMENT);
                         break;
                 }
             }
         });
 
-        final Switch like = view.findViewById(R.id.feed_like);
+        Switch like = view.findViewById(R.id.feed_like);
         like.setChecked(YLUIConfig.getInstance().isVideoLikeShow());
-        like.setOnClickListener(new View.OnClickListener() {
+        like.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-                YLUIConfig.getInstance().videoLikeShow(like.isChecked());
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                YLUIConfig.getInstance().videoLikeShow(isChecked);
             }
         });
 
-        final Switch share = view.findViewById(R.id.feed_share);
+        Switch share = view.findViewById(R.id.feed_share);
         share.setChecked(YLUIConfig.getInstance().isVideoShareShow());
-        share.setOnClickListener(new View.OnClickListener() {
+        share.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-                YLUIConfig.getInstance().videoShareShow(share.isChecked());
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                YLUIConfig.getInstance().videoShareShow(isChecked);
+            }
+        });
+
+        Switch showAvatar = view.findViewById(R.id.feed_show_avatar);
+        showAvatar.setChecked(FeedConfig.getInstance().showPlayerAvatar());
+        showAvatar.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                YLUIConfig.getInstance().feedShowAvatar(isChecked);
+            }
+        });
+        Switch feedAutoPlay = view.findViewById(R.id.feed_auto_play);
+        feedAutoPlay.setChecked(FeedConfig.getInstance().getFeedPlayAuto());
+        feedAutoPlay.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                YLUIConfig.getInstance().feedPlayAuto(isChecked);
             }
         });
 
     }
 
     private void initDetail(View view) {
-        final Switch head = view.findViewById(R.id.detail_head);
+        Switch head = view.findViewById(R.id.detail_head);
         head.setChecked(FeedConfig.getInstance().getAvatarClickable());
-        head.setOnClickListener(new View.OnClickListener() {
+        head.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-                YLUIConfig.getInstance().feedAvatarClickable(head.isChecked());
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                YLUIConfig.getInstance().feedAvatarClickable(isChecked);
             }
         });
 
-        final Switch follow = view.findViewById(R.id.detail_follow);
+        Switch follow = view.findViewById(R.id.detail_follow);
         follow.setChecked(FeedConfig.getInstance().getFollowShow());
-        follow.setOnClickListener(new View.OnClickListener() {
+        follow.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-                YLUIConfig.getInstance().followAvailable(follow.isChecked());
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                YLUIConfig.getInstance().followAvailable(isChecked);
             }
         });
     }

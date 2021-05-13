@@ -88,14 +88,16 @@ public class UIFragment extends BaseFragment implements TitleLayout.OptionsItemS
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
-        FragmentManager manager = getChildFragmentManager();
-        if (manager == null) {
-            manager = getFragmentManager();
+        if (channelFragment != null) {
+            channelFragment.onHiddenChanged(hidden);
         }
-        List<Fragment> fragmentList = manager.getFragments();
-        if (fragmentList == null) return;
-        for (Fragment fragment : fragmentList) {
-            fragment.onHiddenChanged(hidden);
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (channelFragment != null) {
+            channelFragment.setUserVisibleHint(isVisibleToUser);
         }
     }
 

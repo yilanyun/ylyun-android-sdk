@@ -3,14 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.yilan.sdk.sdkdemo">
 
-    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
-    <uses-permission android:name="android.permission.READ_PROFILE" />
-    <uses-permission android:name="android.permission.READ_CONTACTS" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission
-        android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
-
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -26,11 +18,8 @@
         <activity android:name=".ad.splash.SplashAdActivity" />
         <activity android:name=".ad.banner.BannerAdActivity" />
         <activity android:name=".ad.feed.FeedAdActivity" />
+        <activity android:name=".ad.videoList.VideoListAdActivity" />
         <activity android:name=".ad.interstitial.InterstitialAdActivity" />
-
-        <uses-library
-            android:name="org.apache.http.legacy"
-            android:required="false" />
 
         <activity
             android:name=".SplashActivity"
@@ -45,7 +34,6 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:excludeFromRecents="true"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:hardwareAccelerated="true"
             android:launchMode="singleTask"
@@ -67,25 +55,56 @@
             android:windowSoftInputMode="stateHidden|adjustResize|adjustPan" />
         <activity
             android:name=".LoginActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:host="tv.yilan"
+                    android:path="/login"
+                    android:scheme="yilanyun" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".ConfigActivity"
-            android:screenOrientation="portrait" /> <!-- baidu -->
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.baidu.mobads.AppActivity"
             android:configChanges="keyboard|keyboardHidden|orientation"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" /> <!-- baidu -->
+        <activity
+            android:name=".netstate.NetStateActivity"
+            android:launchMode="singleTask" />
+
+        <activity android:name=".ad.ADTestActivity" />
+
+        <activity android:name=".ad.reward.RewardVideoActivity" />
+        <activity android:name=".stream.StreamTestActivity" />
 
         <meta-data
             android:name="com.bumptech.glide.integration.okhttp3.OkHttpGlideModule"
             android:value="GlideModule" />
-
-        <activity
-            android:name=".netstate.NetStateActivity"
-            android:launchMode="singleTask" />
-        <activity android:name=".ad.ADTestActivity" />
-        <activity android:name=".ad.reward.RewardVideoActivity" />
-        <activity android:name=".stream.StreamTestActivity" />
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
     </application>
+
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
 
 </manifest>

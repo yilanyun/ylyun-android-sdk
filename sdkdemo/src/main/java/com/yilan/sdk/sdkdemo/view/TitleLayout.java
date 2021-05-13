@@ -35,6 +35,14 @@ public class TitleLayout extends FrameLayout implements View.OnClickListener {
         init(context);
     }
 
+    public ImageView getLogoView() {
+        return mLogo;
+    }
+
+    public ImageView getActionMoreView() {
+        return mActionMore;
+    }
+
     @SuppressLint("RestrictedApi")
     private void init(Context context) {
         View layout = LayoutInflater.from(context).inflate(R.layout.layout_title, null);

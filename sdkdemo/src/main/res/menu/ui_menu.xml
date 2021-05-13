@@ -24,4 +24,8 @@
         android:id="@+id/refresh_open"
         android:icon="@drawable/ic_home_black_24dp"
         android:title="当前页面下拉刷新开关" />
+    <item
+        android:id="@+id/search_pgc"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="PGC搜索" />
 </menu>

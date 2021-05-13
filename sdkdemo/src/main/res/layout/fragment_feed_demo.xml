@@ -72,6 +72,20 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="#efefef" />
+    <TextView
+        android:id="@+id/feed_single"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:drawableRight="@drawable/arrow_left"
+        android:gravity="center_vertical"
+        android:text="抽屉式信息流-单频道"
+        android:textColor="#3F3F3F"
+        android:textSize="15sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#efefef" />
 
     <TextView
         android:id="@+id/ksGrid"
@@ -109,7 +123,21 @@
         android:layout_height="46dp"
         android:drawableRight="@drawable/arrow_left"
         android:gravity="center_vertical"
-        android:text="混合式信息流"
+        android:text="混合式信息流(单排)"
+        android:textColor="#3F3F3F"
+        android:textSize="15sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#efefef" />
+    <TextView
+        android:id="@+id/hybrid_feed_multi"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:drawableRight="@drawable/arrow_left"
+        android:gravity="center_vertical"
+        android:text="混合式信息流(双排)"
         android:textColor="#3F3F3F"
         android:textSize="15sp" />
 
@@ -125,6 +153,21 @@
         android:drawableRight="@drawable/arrow_left"
         android:gravity="center_vertical"
         android:text="混合式信息流(demo)"
+        android:textColor="#3F3F3F"
+        android:textSize="15sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#efefef" />
+
+    <TextView
+        android:id="@+id/start_by_id"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:drawableRight="@drawable/arrow_left"
+        android:gravity="center_vertical"
+        android:text="用视频ID打开视频详情页"
         android:textColor="#3F3F3F"
         android:textSize="15sp" />
 

@@ -15,7 +15,12 @@
     <item
         android:id="@+id/natvie_hybrid"
         android:icon="@drawable/ic_home_black_24dp"
-        android:title="混合信息流" />
+        android:title="混合信息流(单排)" />
+
+    <item
+        android:id="@+id/natvie_hybrid_double"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="混合信息流(双排)" />
 
     <item
         android:id="@+id/hybird"

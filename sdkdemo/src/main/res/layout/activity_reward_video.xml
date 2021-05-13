@@ -6,6 +6,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/edit_num"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:hint="请输入序列号，2 - 5" />
+        <Button
+            android:id="@+id/save"
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:text="确定"
+            android:layout_height="60dp"/>
+    </LinearLayout>
 
     <Button
         android:layout_width="match_parent"
@@ -14,7 +31,6 @@
         android:gravity="center"
         android:onClick="requestReward"
         android:text="请求激励广告" />
-
 
     <Button
         android:layout_width="match_parent"

@@ -11,6 +11,7 @@ import com.yilan.sdk.player.ylplayer.callback.OnPlayerCallBack;
 import com.yilan.sdk.ui.YLUIInit;
 import com.yilan.sdk.ui.configs.CommentConfig;
 import com.yilan.sdk.ui.configs.FeedConfig;
+import com.yilan.sdk.ui.configs.FeedScrollListener;
 import com.yilan.sdk.ui.configs.LittleVideoConfig;
 import com.yilan.sdk.ui.configs.YLUIConfig;
 import com.yilan.sdk.ui.configs.callback.CommentSimpleCallback;
@@ -18,7 +19,10 @@ import com.yilan.sdk.ui.configs.callback.LikeCallback;
 import com.yilan.sdk.ui.configs.callback.OnAvatarClickListener;
 import com.yilan.sdk.ui.configs.callback.OnLittleVideoCallBack;
 import com.yilan.sdk.ui.configs.callback.OnRelateVideoListener;
-import com.yilan.sdk.ylad.YLAdListener;
+import com.yilan.sdk.ylad.IAdExtraDataListener;
+import com.yilan.sdk.ylad.IYLAdListener;
+import com.yilan.sdk.ylad.config.YLAdConfig;
+import com.yilan.sdk.ylad.constant.YLAdConstants;
 
 public class App extends Application {
 
@@ -42,6 +46,7 @@ public class App extends Application {
                 .littleLikeShow(true)
                 .littleShareShow(true)
                 .littleShowGuide(true)
+                .littleShowRelate(false)
                 .littleShowAvatar(true)
                 .feedShowAvatar(true)
                 .littleComment(CommentConfig.CommentType.SHOW_COMMENT_ALL)
@@ -53,7 +58,23 @@ public class App extends Application {
                 .followChannelAvailable(true)
                 .feedAvatarClickable(true)
                 .feedPlayAuto(false)
-                .registerAdListener(new YLAdListener() {
+                .setLittleTitleBottom(0)
+                .setLittleHotBarBottom(0)
+                .registerFeedScrollCallBack(new FeedScrollListener() {
+                    @Override
+                    public void onScrollTop() {
+                        super.onScrollTop();
+                        Log.i(TAG, "top");
+
+                    }
+
+                    @Override
+                    public void onScrollBottom() {
+                        super.onScrollBottom();
+                        Log.i(TAG, "bottom");
+                    }
+                })
+                .registerAdListener(new IYLAdListener() {
 
                     @Override
                     public void onSuccess(String adType, int source, String reqId, String pid) {
@@ -169,7 +190,7 @@ public class App extends Application {
             }
         });
         LittleVideoConfig.getInstance()
-                .setVideoLoop(false)
+                .setVideoLoop(true)
                 .registerPlayerCallBack(new OnPlayerCallBack() {
                     @Override
                     public void onStart(String pager, String videoID, String taskID) {
@@ -216,6 +237,22 @@ public class App extends Application {
                         Log.d(TAG_LITTLE, "播放状态---onStop [pager：" + pager + "  videoID：" + videoID + "]");
                     }
                 });
+        YLAdConfig.getInstance().registerAdExtraDataListener(new IAdExtraDataListener() {
+            @Override
+            public String getExtraData(int source) {
+                if (source == YLAdConstants.ALLI_TOUTIAO_STENCIL) {
+                    return "穿山甲的额外数据。。。。。";
+                } else if (source == YLAdConstants.ALLI_GDT_EXPRESS) {
+                    return "广点通的额外数据。。。。。";
+                }
+                return null;
+            }
+
+            @Override
+            public String getUserId(int source) {
+                return null;
+            }
+        });
     }
 
     @Override

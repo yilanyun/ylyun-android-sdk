@@ -19,7 +19,6 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.yilan.sdk.sdkdemo.view.TitleLayout;
-import com.yilan.sdk.ui.category.ChannelFragment;
 import com.yilan.sdk.ui.configs.YLUIConfig;
 import com.yilan.sdk.ui.little.YLLittleVideoFragment;
 import com.yilan.sdk.ui.web.WebFragment;
@@ -32,9 +31,9 @@ public class MainPagerActivity extends AppCompatActivity implements WebFragment.
 
     private TitleLayout mTitleLayout;
     private FragmentManager manager;
-    private ShortFragment littleVideoFragment;
+    private ShortFragment2 littleVideoFragment;
     private MyFragment myFragment;
-    private ChannelFragment channelFrag;
+    private UIFragment channelFrag;
     List<Fragment> fragments = new ArrayList<>();
 
     CustomViewPager viewPager;
@@ -61,15 +60,15 @@ public class MainPagerActivity extends AppCompatActivity implements WebFragment.
             checkAndRequestPermission();
         }
         initFragments();
-        viewPager.setOffscreenPageLimit(4);
+        viewPager.setOffscreenPageLimit(1);
         adapter = new MyPagerAdapter(manager, fragments);
         viewPager.setAdapter(adapter);
         YLLittleVideoFragment.preloadVideo();
     }
 
     private void initFragments() {
-        channelFrag = new ChannelFragment();
-        littleVideoFragment = new ShortFragment();
+        channelFrag = new UIFragment();
+        littleVideoFragment = new ShortFragment2();
         myFragment = new MyFragment();
         fragments.add(channelFrag);
         fragments.add(littleVideoFragment);
@@ -92,7 +91,6 @@ public class MainPagerActivity extends AppCompatActivity implements WebFragment.
                 case R.id.navigation_my:
                     viewPager.setCurrentItem(2, true);
                     mTitleLayout.setOptionsMenu(MainPagerActivity.this, R.menu.short_menu);
-                    mTitleLayout.onOptionsItemSelectedListener(littleVideoFragment);
                     return true;
             }
             return false;
@@ -108,7 +106,15 @@ public class MainPagerActivity extends AppCompatActivity implements WebFragment.
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        boolean canback = true;
+        if (channelFrag != null && channelFrag.isVisible()) {
+            canback = channelFrag.canBack();
+        }
+        if (!canback) {
+            return;
+        } else {
+            super.onBackPressed();
+        }
     }
 
     @Override

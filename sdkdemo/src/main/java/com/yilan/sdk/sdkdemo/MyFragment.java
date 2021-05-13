@@ -9,6 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.yilan.sdk.sdkdemo.ad.ADTestActivity;
+import com.yilan.sdk.sdkdemo.netstate.NetStateActivity;
+import com.yilan.sdk.sdkdemo.stream.StreamTestActivity;
+
 
 public class MyFragment extends BaseFragment {
     @Nullable
@@ -20,7 +24,7 @@ public class MyFragment extends BaseFragment {
         view.findViewById(R.id.login).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(),LoginActivity.class);
+                Intent intent = new Intent(getContext(), LoginActivity.class);
                 startActivity(intent);
             }
         });
@@ -28,8 +32,26 @@ public class MyFragment extends BaseFragment {
         view.findViewById(R.id.config).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), ConfigActivity.class);
+                Intent intent = new Intent(getContext(),ConfigActivity.class);
                 startActivity(intent);
+            }
+        });
+        view.findViewById(R.id.net_check).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), NetStateActivity.class));
+            }
+        });
+        view.findViewById(R.id.ad_test).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ADTestActivity.start(getContext());
+            }
+        });
+        view.findViewById(R.id.stream_test).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), StreamTestActivity.class));
             }
         });
         return view;

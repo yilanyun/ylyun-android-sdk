@@ -7,7 +7,7 @@ public class Utils {
             sourceName = "一览";
         } else if (source == 23) {
             sourceName = "快手";
-        } else if (source == 20) {
+        } else if (source == 20 || source == 4) {
             sourceName = "穿山甲";
         } else if (source == 21 || source == 22) {
             sourceName = "广点通";

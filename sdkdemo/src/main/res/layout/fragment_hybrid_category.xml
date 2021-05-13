@@ -85,7 +85,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="下一步"
+            android:text="已选好"
             android:textColor="#FFFFFFFF"
             android:textSize="18sp" />
 

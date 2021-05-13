@@ -25,7 +25,7 @@ public class InterstitialAdActivity extends BaseAdActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_common_ad);
         container = findViewById(R.id.root_container);
-        interstitialAd = YLAdManager.with(this).getEngine(YLAdConstants.AdName.H5_INTERSTITIAL, "");
+        interstitialAd = YLAdManager.with(this).getEngine(YLAdConstants.AdName.VERTICAL_INTERSTITIAL, "");
     }
 
     public void requestAndShow(View view) {

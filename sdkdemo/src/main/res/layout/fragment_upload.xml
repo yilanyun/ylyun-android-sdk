@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rl_img"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp">
+
+        <ImageView
+            android:id="@+id/img_cover"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/ic_add_image"
+            android:scaleType="centerCrop" />
+
+        <ImageView
+            android:id="@+id/img_del"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:paddingLeft="10dp"
+            android:paddingBottom="10dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_delete_menu"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/tv_cover"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/picture_icon_shadow_bg"
+            android:drawablePadding="5dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="5dp"
+            android:paddingTop="8dp"
+            android:text="请添加视频封面"
+            android:textColor="#fefefe"
+            android:textSize="11sp"
+            tools:visibility="visible" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_video"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_below="@+id/rl_img"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp">
+
+        <ImageView
+            android:id="@+id/fiv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_add_image" />
+
+        <ImageView
+            android:id="@+id/iv_del"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:paddingLeft="10dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_delete_menu"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/tv_duration"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_alignLeft="@id/fiv"
+            android:layout_alignRight="@id/fiv"
+            android:layout_alignBottom="@id/fiv"
+            android:background="@drawable/picture_icon_shadow_bg"
+            android:drawableLeft="@drawable/picture_icon_video"
+            android:drawablePadding="5dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="5dp"
+            android:paddingTop="8dp"
+            android:text="请选择视频"
+            android:textColor="#fefefe"
+            android:textSize="11sp"
+            tools:visibility="visible" />
+
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/et_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_video"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/bg_qf_ee"
+        android:gravity="top"
+        android:hint="请输入视频描述"
+        android:maxLength="200"
+        android:minHeight="120dp"
+        android:padding="10dp"
+        android:textColor="#494949"
+        android:textColorHint="#8a8a8a"
+        android:textSize="16sp" />
+
+
+    <TextView
+        android:id="@+id/upload_start"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="#ee252525"
+        android:gravity="center"
+        android:text="开始上传"
+        android:textColor="#fefefe"
+        android:textSize="18dp" />
+
+</RelativeLayout>

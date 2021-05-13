@@ -1,71 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fragment_container"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <EditText
-        android:id="@+id/nick"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="nick"
-        android:text="nickname" />
+    android:layout_height="match_parent">
 
 
-    <EditText
-        android:id="@+id/avatar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="avatar"
-        android:text="http://touxiang.com" />
-
-
-    <EditText
-        android:id="@+id/phone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="phone"
-        android:text="13515613406" />
-
-    <EditText
-        android:id="@+id/userid"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="userId"
-        android:text="userId" />
-
-    <Button
-        android:id="@+id/login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="登陆" />
-
-    <Button
-        android:id="@+id/logout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="退出" />
-
-    <Button
-        android:id="@+id/gettoken"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="获取user" />
-
-
-    <Button
-        android:id="@+id/openweb"
-        android:layout_marginTop="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="打开网页" />
-    <EditText
-        android:id="@+id/web"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:hint="输入网址"
-        android:text="" />
-
-
-</LinearLayout>
+</FrameLayout>
