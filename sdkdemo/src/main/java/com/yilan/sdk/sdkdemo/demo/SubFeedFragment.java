@@ -46,7 +46,7 @@ public class SubFeedFragment extends Fragment {
      * @param v
      */
     private void showLittleCard(View v) {
-        DemoActivity.startSingle(v.getContext(), SubFragment.LITTLE_CARD);
+        DemoActivity.startSingle(v.getContext(),SubFragment.LITTLE_CARD);
     }
 
     /**
@@ -54,7 +54,7 @@ public class SubFeedFragment extends Fragment {
      * @param v
      */
     private void showLittleSingle(View v) {
-        DemoActivity.startSingle(v.getContext(), SubFragment.LITTLE_SINGLE);
+        DemoActivity.startSingle(v.getContext(),SubFragment.LITTLE_SINGLE);
     }
 
     /**
@@ -62,7 +62,7 @@ public class SubFeedFragment extends Fragment {
      * @param v
      */
     private void showLittleFeedSingle(View v) {
-        DemoActivity.startSingle(v.getContext(), SubFragment.FEED_SINGLE);
+        DemoActivity.startSingle(v.getContext(),SubFragment.FEED_SINGLE);
     }
 
 }

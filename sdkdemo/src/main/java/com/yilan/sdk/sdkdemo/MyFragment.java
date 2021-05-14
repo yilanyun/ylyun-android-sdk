@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.yilan.sdk.sdkdemo.ad.ADTestActivity;
+import com.yilan.sdk.sdkdemo.data.DataRequestActivity;
 import com.yilan.sdk.sdkdemo.netstate.NetStateActivity;
 import com.yilan.sdk.sdkdemo.stream.StreamTestActivity;
 
@@ -32,7 +33,7 @@ public class MyFragment extends BaseFragment {
         view.findViewById(R.id.config).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(),ConfigActivity.class);
+                Intent intent = new Intent(getContext(), ConfigActivity.class);
                 startActivity(intent);
             }
         });
@@ -52,6 +53,13 @@ public class MyFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getContext(), StreamTestActivity.class));
+            }
+        });
+
+        view.findViewById(R.id.data_test).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), DataRequestActivity.class));
             }
         });
         return view;

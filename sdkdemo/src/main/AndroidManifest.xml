@@ -14,6 +14,8 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:label">
+        <activity android:name=".upload.UploadActivity"></activity>
+        <activity android:name=".demo.PlayerActivity"></activity>
         <activity android:name=".demo.DemoActivity" />
         <activity android:name=".ad.splash.SplashAdActivity" />
         <activity android:name=".ad.banner.BannerAdActivity" />
@@ -32,6 +34,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".MainActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
@@ -78,6 +81,7 @@
             android:name=".netstate.NetStateActivity"
             android:launchMode="singleTask" />
 
+        <activity android:name=".data.DataRequestActivity"/>
         <activity android:name=".ad.ADTestActivity" />
 
         <activity android:name=".ad.reward.RewardVideoActivity" />
@@ -90,7 +94,6 @@
             android:name="org.apache.http.legacy"
             android:required="false" />
     </application>
-
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />

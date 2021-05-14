@@ -1,5 +1,6 @@
 package com.yilan.sdk.sdkdemo.demo;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -28,6 +29,13 @@ public class OtherFragment extends Fragment {
                 showLittleCard(v);
             }
         });
+        view.findViewById(R.id.text_player).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPlayerActivity();
+            }
+        });
+
     }
 
     /**
@@ -37,5 +45,10 @@ public class OtherFragment extends Fragment {
     private void showLittleCard(View v) {
         ADTestActivity.start(getContext());
     }
+
+    private void showPlayerActivity(){
+        startActivity(new Intent(this.getActivity(), PlayerActivity.class));
+    }
+
 
 }

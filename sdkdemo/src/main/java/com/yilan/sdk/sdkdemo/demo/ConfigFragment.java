@@ -111,7 +111,7 @@ public class ConfigFragment extends Fragment {
         });
 
 
-        final Switch loopStyle = view.findViewById(R.id.little_loop_style);
+        Switch loopStyle = view.findViewById(R.id.little_loop_style);
         loopStyle.setChecked(YLPlayerConfig.config().isVideoLoop());
         loopStyle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -121,7 +121,7 @@ public class ConfigFragment extends Fragment {
             }
         });
 
-        final TextView textSeek = view.findViewById(R.id.tv_little_seek);
+        TextView textSeek = view.findViewById(R.id.tv_little_seek);
         SeekBar seekBar = view.findViewById(R.id.little_seek_bar);
         int dpTitleBottom = LittleVideoConfig.getInstance().getDpTitleBottom();
         seekBar.setMax(100);
@@ -147,7 +147,7 @@ public class ConfigFragment extends Fragment {
             }
         });
 
-        final TextView textHotSeek = view.findViewById(R.id.tv_little_hot_seek);
+        TextView textHotSeek = view.findViewById(R.id.tv_little_hot_seek);
         SeekBar seekBarHot = view.findViewById(R.id.little_hot_seek_bar);
         int dpHotBarBottom = LittleVideoConfig.getInstance().getDpHotBarBottom();
         seekBarHot.setMax(100);

@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 import com.yilan.sdk.sdkdemo.view.TitleLayout;
 import com.yilan.sdk.ui.category.ChannelFragment;
 import com.yilan.sdk.ui.configs.FeedConfig;
+import com.yilan.sdk.ui.search.YlSearchActivity;
+import com.yilan.sdk.ui.search.result.VideoType;
 
 import java.util.List;
 
@@ -56,6 +58,9 @@ public class UIFragment extends BaseFragment implements TitleLayout.OptionsItemS
                 if (channelFragment != null) {
                     channelFragment.swipeEnableChange();
                 }
+                break;
+            case R.id.search_pgc:
+                YlSearchActivity.start(getActivity(), VideoType.TYPE_PGC);
                 break;
             default:
                 hideAll();

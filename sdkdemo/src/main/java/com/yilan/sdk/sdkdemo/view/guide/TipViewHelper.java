@@ -150,30 +150,27 @@ public class TipViewHelper {
 
     private void checkViewWH() {
         new Handler()
-                .postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        boolean canShow = true;
-                        Collection<View> allView = mViewMap.values();
-                        for (View v : allView) {
-                            if (v.getHeight() == 0 || v.getWidth() == 0) {
-                                canShow = false;
-                                break;
-                            }
+                .postDelayed(() -> {
+                    boolean canShow = true;
+                    Collection<View> allView = mViewMap.values();
+                    for (View v : allView) {
+                        if (v.getHeight() == 0 || v.getWidth() == 0) {
+                            canShow = false;
+                            break;
                         }
-                        if (canShow) {
-                            if (canShowTipView
-                                    && !((Activity) mContext).isFinishing()
-                                    && !TipViewHelper.this.isDestroyed()) {
-                                popupWindow
-                                        .showAtLocation(
-                                                ((Activity) mContext).getWindow().getDecorView(),
-                                                Gravity.CENTER, 0,
-                                                0);
-                            }
-                        } else {
-                            TipViewHelper.this.checkViewWH();
+                    }
+                    if (canShow) {
+                        if (canShowTipView
+                                && !((Activity) mContext).isFinishing()
+                                && !isDestroyed()) {
+                            popupWindow
+                                    .showAtLocation(
+                                            ((Activity) mContext).getWindow().getDecorView(),
+                                            Gravity.CENTER, 0,
+                                            0);
                         }
+                    } else {
+                        checkViewWH();
                     }
                 }, 500);
     }
