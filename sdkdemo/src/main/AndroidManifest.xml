@@ -14,7 +14,6 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:label">
-        <activity android:name=".upload.UploadActivity"></activity>
         <activity android:name=".demo.PlayerActivity"></activity>
         <activity android:name=".demo.DemoActivity" />
         <activity android:name=".ad.splash.SplashAdActivity" />
