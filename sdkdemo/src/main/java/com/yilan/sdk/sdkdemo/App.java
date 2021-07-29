@@ -5,7 +5,6 @@ import android.content.Context;
 import android.support.multidex.MultiDex;
 import android.util.Log;
 
-import com.squareup.leakcanary.LeakCanary;
 import com.yilan.sdk.player.ylplayer.YLPlayerConfig;
 import com.yilan.sdk.player.ylplayer.callback.OnPlayerCallBack;
 import com.yilan.sdk.ui.YLUIInit;
@@ -32,14 +31,19 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        LeakCanary.install(this);
         YLUIInit.getInstance()
                 .setCrashOpen(false)
                 .setApplication(this)
-                .setAccessKey("")
-                .setAccessToken("")
+                .setAccessKey("ylel2vek386q")
+                .setAccessToken("talb5el4cbw3e8ad3jofbknkexi1z8r4")
                 .logEnable(true)
                 .build();
+
+        //请在合适的时机设置信息收集开关，可提升视频只能推荐效果，和广告收益，此开关默认false。详细请阅读文档-合规说明
+        // 1.用户第一次安装并打开时，在用户同意授权之后调用，
+        // 2.第二次及之后每次打开app 可以 Application 的onCreate中调用
+        YLUIInit.submitPolicyGrantResult(true);
+
         YLUIConfig.getInstance()
                 .feedPlayStyle(FeedConfig.STYLE_FEED_PLAY)
                 .recommendHintEnable(true)
