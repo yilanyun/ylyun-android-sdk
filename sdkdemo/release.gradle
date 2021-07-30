@@ -10,7 +10,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 408
-        versionName "sdkdemo-3.2.0.0"
+        versionName "sdkdemo-3.3.3.16"
         buildConfigField('int', 'buildType', buildType)
     }
 
@@ -54,13 +54,13 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:3.11.0'
     implementation 'com.google.code.gson:gson:2.8.5'
     // ijk
-    implementation 'tv.yilan.ijk.media:ijkplayer-java:0.8.8'
-    implementation 'tv.yilan.ijk.media:ijkplayer-armv7a:0.8.8'
-    implementation 'tv.yilan.ijk.media:ijkplayer-armv5:0.8.8'
-    implementation 'tv.yilan.ijk.media:ijkplayer-arm64:0.8.8'
-    implementation 'tv.yilan.ijk.media:ijkplayer-x86:0.8.8'
-    implementation 'tv.yilan.ijk.media:ijkplayer-x86_64:0.8.8'
+    implementation 'tv.yilan.media:player-java:1.0.0'
+    implementation 'tv.yilan.media:player-armv7a:1.0.0'
+    implementation 'tv.yilan.media:player-armv5:1.0.0'
+    implementation 'tv.yilan.media:player-arm64:1.0.0'
+    implementation 'tv.yilan.media:player-x86:1.0.0'
+    implementation 'tv.yilan.media:player-x86_64:1.0.0'
     //一览sdk
-    implementation "com.yilan.sdk:ui:3.3.3.14"
+    implementation "com.yilan.sdk:ui:3.3.3.16"
 
 }
