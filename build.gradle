@@ -16,13 +16,12 @@ buildscript {
 
 allprojects {
     repositories {
-        google()
-        jcenter()
-
         //添加一览 maven地址
         maven {
             url 'http://nexus.1lan.tv/repository/maven-releases/'
         }
+        google()
+        jcenter()
         //添加阿里云maven地址
         maven {
             url 'http://maven.aliyun.com/nexus/content/repositories/releases/'

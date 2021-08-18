@@ -24,7 +24,7 @@ class VideoViewHolder extends ViewHolder {
 
     protected void initView() {
         playerView = itemView.findViewById(R.id.player_view);
-        playerView.setStyle(PlayerStyle.STYLE_UGC);
+        playerView.setStyle(PlayerStyle.STYLE_MATCH.value);
         playerView.setLooping(true);
     }
 
