@@ -1,12 +1,12 @@
 package com.yilan.sdk.sdkdemo;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.FragmentActivity;
 
 import com.yilan.sdk.common.util.YLUIUtil;
 import com.yilan.sdk.sdkdemo.demo.ConfigFragment;
 
-public class ConfigActivity extends AppCompatActivity {
+public class ConfigActivity extends FragmentActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

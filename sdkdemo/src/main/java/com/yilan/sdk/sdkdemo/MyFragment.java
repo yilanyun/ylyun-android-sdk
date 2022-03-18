@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.yilan.sdk.sdkdemo.ad.ADTestActivity;
 import com.yilan.sdk.sdkdemo.data.DataRequestActivity;
 import com.yilan.sdk.sdkdemo.netstate.NetStateActivity;
 import com.yilan.sdk.sdkdemo.stream.StreamTestActivity;
@@ -43,12 +42,6 @@ public class MyFragment extends BaseFragment {
                 startActivity(new Intent(getContext(), NetStateActivity.class));
             }
         });
-        view.findViewById(R.id.ad_test).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ADTestActivity.start(getContext());
-            }
-        });
         view.findViewById(R.id.stream_test).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,6 +53,12 @@ public class MyFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getContext(), DataRequestActivity.class));
+            }
+        });
+        view.findViewById(R.id.player_test).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                PlayerLittleVideoActivity.start(v.getContext(), LittlePageConfig.DefaultConfig());
             }
         });
         return view;

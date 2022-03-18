@@ -15,12 +15,14 @@
         <activity
             android:name=".demo.DemoActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
-        <activity android:name=".ad.splash.SplashAdActivity" />
-        <activity android:name=".ad.banner.BannerAdActivity" />
-        <activity android:name=".ad.feed.FeedAdActivity" />
-        <activity android:name=".ad.videoList.VideoListAdActivity" />
-        <activity android:name=".ad.interstitial.InterstitialAdActivity" />
-
+        <activity android:name=".demo.PlayerReportActivity" />
+        <activity
+            android:name=".AppActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|smallestScreenSize|screenLayout"
+            android:hardwareAccelerated="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize|adjustPan" />
         <activity
             android:name=".SplashActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -77,9 +79,7 @@
             android:launchMode="singleTask" />
 
         <activity android:name=".data.DataRequestActivity" />
-        <activity android:name=".ad.ADTestActivity" />
 
-        <activity android:name=".ad.reward.RewardVideoActivity" />
         <activity android:name=".stream.StreamTestActivity" />
 
         <meta-data
@@ -93,6 +93,8 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 

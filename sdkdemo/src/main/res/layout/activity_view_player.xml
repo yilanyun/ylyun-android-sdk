@@ -4,25 +4,15 @@
     android:layout_height="match_parent"
     >
 
-    <FrameLayout
-        android:id="@+id/player_container"
+    <com.yilan.sdk.player.PlayerEngineView
+        android:id="@+id/player"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#000000">
-
-        <ImageView
-            android:id="@+id/img_cover"
-            android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:scaleType="centerCrop" />
-    </FrameLayout>
-
-
+        android:layout_height="wrap_content"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/player_container"
+        android:layout_below="@+id/player"
         android:orientation="vertical">
 
         <LinearLayout
@@ -41,11 +31,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="暂停" />
-            <Button
-                android:id="@+id/stop"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="停止" />
 
         </LinearLayout>
 

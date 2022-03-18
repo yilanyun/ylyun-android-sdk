@@ -80,7 +80,7 @@ public class DataRequestActivity extends YLBaseActivity<DataRequestPresenter> {
         findViewById(R.id.search_video_pgc).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                YlSearchActivity.start(DataRequestActivity.this, VideoType.TYPE_PGC);
+                YlSearchActivity.start(DataRequestActivity.this,VideoType.TYPE_PGC);
             }
         });
         editText = findViewById(R.id.url_edit);

@@ -18,9 +18,9 @@ import android.view.Window;
 import com.yilan.sdk.common.executor.Dispatcher;
 import com.yilan.sdk.common.executor.handler.YLCoroutineScope;
 import com.yilan.sdk.common.executor.handler.YLJob;
-import com.yilan.sdk.common.util.FSLogcat;
 import com.yilan.sdk.data.entity.Channel;
 import com.yilan.sdk.sdkdemo.R;
+import com.yilan.sdk.sdkdemo.util.ImmerseLayoutUtil;
 import com.yilan.sdk.sdkdemo.view.guide.TipGuideKey;
 import com.yilan.sdk.sdkdemo.view.guide.TipLightView;
 import com.yilan.sdk.sdkdemo.view.guide.TipViewHelper;
@@ -123,6 +123,7 @@ public class DemoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         showFrameMetrics();
         setContentView(R.layout.activity_feed);
+        ImmerseLayoutUtil.setImmerseTitleViewLight(this, R.id.layout_common_title);
         if (getIntent() != null) {
             type = getIntent().getIntExtra("type", -1);
             subType = getIntent().getIntExtra("subType", -1);
@@ -145,13 +146,13 @@ public class DemoActivity extends AppCompatActivity {
         getWindow().addOnFrameMetricsAvailableListener(new Window.OnFrameMetricsAvailableListener() {
             @Override
             public void onFrameMetricsAvailable(Window window, FrameMetrics frameMetrics, int dropCountSinceLastInvocation) {
-                FSLogcat.d("FrameMetrics", "measure + layout = " + frameMetrics.getMetric(FrameMetrics.LAYOUT_MEASURE_DURATION) / 1000000 +
-                        "  delay = " + frameMetrics.getMetric(FrameMetrics.UNKNOWN_DELAY_DURATION) / 1000000 +
-                        "  anim = " + frameMetrics.getMetric(FrameMetrics.ANIMATION_DURATION) / 1000000 +
-                        "  touch = " + frameMetrics.getMetric(FrameMetrics.INPUT_HANDLING_DURATION) / 1000000 +
-                        "  draw = " + frameMetrics.getMetric(FrameMetrics.DRAW_DURATION) / 1000000 +
-                        "  total = " + frameMetrics.getMetric(FrameMetrics.TOTAL_DURATION) / 1000000 + "\n"
-                );
+//                FSLogcat.d("FrameMetrics", "measure + layout = " + frameMetrics.getMetric(FrameMetrics.LAYOUT_MEASURE_DURATION) / 1000000 +
+//                        "  delay = " + frameMetrics.getMetric(FrameMetrics.UNKNOWN_DELAY_DURATION) / 1000000 +
+//                        "  anim = " + frameMetrics.getMetric(FrameMetrics.ANIMATION_DURATION) / 1000000 +
+//                        "  touch = " + frameMetrics.getMetric(FrameMetrics.INPUT_HANDLING_DURATION) / 1000000 +
+//                        "  draw = " + frameMetrics.getMetric(FrameMetrics.DRAW_DURATION) / 1000000 +
+//                        "  total = " + frameMetrics.getMetric(FrameMetrics.TOTAL_DURATION) / 1000000 + "\n"
+//                );
             }
         }, new Handler());
     }

@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import com.yilan.sdk.sdkdemo.view.TitleLayout;
 import com.yilan.sdk.ui.hybridfeed.HybridFeedFragment;
 import com.yilan.sdk.ui.hybridfeed.HybridMultiFeedFragment;
-import com.yilan.sdk.ui.little.YLLittleVideoFragment;
+import com.yilan.sdk.ui.little.channel.YLLittleChannelFragment;
 import com.yilan.sdk.ui.littlevideo.KSLittleVideoFragment;
 import com.yilan.sdk.ui.web.WebFragment;
 
@@ -69,7 +69,7 @@ public class ShortFragment extends BaseFragment implements TitleLayout.OptionsIt
 
     private void showDefault() {
         hideAll();
-        fragment = YLLittleVideoFragment.newInstance();
+        fragment = new YLLittleChannelFragment();
         manager.beginTransaction().replace(R.id.short_content, fragment).commitAllowingStateLoss();
     }
 

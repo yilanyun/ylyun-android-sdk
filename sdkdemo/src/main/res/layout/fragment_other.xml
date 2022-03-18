@@ -28,27 +28,13 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/text_ad"
-        android:layout_width="match_parent"
-        android:layout_height="46dp"
-        android:drawableRight="@drawable/arrow_left"
-        android:gravity="center_vertical"
-        android:text="广告测试入口"
-        android:textColor="#3F3F3F"
-        android:textSize="15sp" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#efefef" />
-
-    <TextView
         android:id="@+id/text_player"
         android:layout_width="match_parent"
         android:layout_height="46dp"
         android:drawableRight="@drawable/arrow_left"
         android:gravity="center_vertical"
         android:text="播放器演示"
+        android:visibility="gone"
         android:textColor="#3F3F3F"
         android:textSize="15sp" />
 

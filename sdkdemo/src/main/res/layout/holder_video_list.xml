@@ -4,7 +4,6 @@
     android:layout_height="match_parent">
     <ImageView
         android:layout_width="match_parent"
-        android:src="@drawable/yl_ad_little_bg"
         android:scaleType="fitXY"
         android:layout_height="match_parent"/>
     <com.yilan.sdk.player.ylplayer.YLPlayerView

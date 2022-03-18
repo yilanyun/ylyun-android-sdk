@@ -18,7 +18,7 @@ import com.yilan.sdk.sdkdemo.R;
 
 public class LoginFragment extends Fragment {
 
-    private YLUser.LoginStateChange loginState;
+    private YLUser.OnLoginCallBack loginState;
     private TextView user_name;
     private TextView user_phone;
     private String nick;
@@ -34,17 +34,35 @@ public class LoginFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        loginState = new YLUser.LoginStateChange() {
+        loginState = new YLUser.OnLoginCallBack() {
             @Override
-            public void onStateChange(boolean isLogin) {
+            public void onLoginSuccess() {
                 if (getActivity() != null) {
-                    ToastUtil.show(getActivity().getApplicationContext(), isLogin ? "登录成功" : "已退出登录");
-                    user_name.setText(isLogin ? userId : "未登录");
-                    user_phone.setText(isLogin ? phone : "");
+                    ToastUtil.show(getActivity().getApplicationContext(), "登录成功");
+                    user_name.setText(userId);
+                    user_phone.setText(phone);
                 }
+            }
+
+            @Override
+            public void onLoginError(String msg) {
+                ToastUtil.show(getActivity().getApplicationContext(), "登录失败：" + msg);
+            }
+
+            @Override
+            public void onLoginOut() {
+                ToastUtil.show(getActivity().getApplicationContext(), "已退出登录");
+                user_name.setText("未登录");
+                user_phone.setText("");
             }
         };
         YLUser.getInstance().addListener(loginState);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        YLUser.getInstance().removeListener(loginState);
     }
 
     @Override

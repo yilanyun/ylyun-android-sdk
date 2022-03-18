@@ -3,12 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
-    android:clickable="true">
+    android:background="#ffffff">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="16dp">
 
@@ -36,12 +35,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="评论配置"
-                android:visibility="invisible" />
 
             <RadioGroup
                 android:id="@+id/little_group"
@@ -86,12 +79,71 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:text="分享按钮开关" />
+            <Switch
+                android:id="@+id/little_relate"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="相关视频开关" />
+
+            <Switch
+                android:id="@+id/little_refresh"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="下拉刷新开关" />
 
             <Switch
                 android:id="@+id/little_loop_style"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:text="小视频播放模式(循环)" />
+            <RadioGroup
+                android:id="@+id/little_ui"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RadioButton
+                    android:id="@+id/little_ui_radio1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="UI(交互靠右)" />
+
+                <RadioButton
+                    android:id="@+id/little_ui_radio2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="UI(交互在底部)" />
+            </RadioGroup>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_litt_size"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="频道字体大小(19dp)"
+                    android:textColor="#333"
+                    android:textSize="14dp"
+                    tools:ignore="SpUsage" />
+
+                <SeekBar
+                    android:id="@+id/seek_little_size"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:max="40"
+                    android:min="10"
+                    android:maxHeight="3dp"
+                    android:minHeight="3dp"
+                    android:paddingBottom="0dp"
+                    android:progressDrawable="@drawable/yl_mp_progress_seekbar_bg"
+                    android:thumb="@drawable/yl_thumb_normal_blue" />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -185,13 +237,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="评论配置"
-                android:visibility="invisible" />
-
             <RadioGroup
                 android:id="@+id/feed_group"
                 android:layout_width="match_parent"
@@ -225,6 +270,13 @@
                 android:text="点赞按钮开关" />
 
             <Switch
+                android:id="@+id/feed_theme"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:text="主题颜色" />
+
+            <Switch
                 android:id="@+id/feed_share"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
@@ -243,29 +295,6 @@
                 android:text="自动播放(仅在feed当前页播放模式下生效)" />
 
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/icon_sub_feed" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:text="详情页配置"
-                android:textColor="#FF3B98FC"
-                android:textSize="15sp" />
-
-        </LinearLayout>
-
         <Switch
             android:id="@+id/detail_head"
             android:layout_width="match_parent"
@@ -278,6 +307,55 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:text="关注按钮开关" />
+        <Switch
+            android:id="@+id/channel_line"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:text="频道下划线是否显示" />
+        <Switch
+            android:id="@+id/channel_follow"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:text="是否展示feed中的关注页面（登陆状态下）" />
+        <Switch
+            android:id="@+id/channel_refresh"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:text="下拉刷新是否可用" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_channel_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="频道字体大小(18dp)"
+                android:textColor="#333"
+                android:textSize="14dp"
+                tools:ignore="SpUsage" />
+
+            <SeekBar
+                android:id="@+id/seek_channel_size"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:clickable="false"
+                android:focusable="false"
+                android:max="40"
+                android:min="10"
+                android:maxHeight="3dp"
+                android:minHeight="3dp"
+                android:paddingBottom="0dp"
+                android:progressDrawable="@drawable/yl_mp_progress_seekbar_bg"
+                android:thumb="@drawable/yl_thumb_normal_blue" />
+        </LinearLayout>
 
     </LinearLayout>
 

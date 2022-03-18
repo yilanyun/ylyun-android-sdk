@@ -15,13 +15,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.yilan.sdk.data.entity.MediaInfo;
-import com.yilan.sdk.data.user.YLUser;
 import com.yilan.sdk.sdkdemo.view.TitleLayout;
 import com.yilan.sdk.ui.configs.YLUIConfig;
 import com.yilan.sdk.ui.configs.callback.ShareCallback;
@@ -39,12 +37,11 @@ public class MainActivity extends AppCompatActivity implements WebFragment.OnVid
     private MyFragment myFragment;
     private UIFragment uiFragment;
 
-    private YLUser.LoginStateChange loginStateChange;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+//        ImmerseLayoutUtil.setImmerseTitleViewLight(this, R.id.layout_common_title);
         mTitleLayout = findViewById(R.id.layout_common_title);
         final BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -68,13 +65,6 @@ public class MainActivity extends AppCompatActivity implements WebFragment.OnVid
                 builder.show();
             }
         });
-        loginStateChange = new YLUser.LoginStateChange() {
-            @Override
-            public void onStateChange(boolean isLogin) {
-                Log.e("login", "登陆状态：" + isLogin);
-            }
-        };
-        YLUser.getInstance().addListener(loginStateChange);
         YLLittleVideoFragment.preloadVideo();
     }
 
@@ -179,9 +169,9 @@ public class MainActivity extends AppCompatActivity implements WebFragment.OnVid
             lackedPermission.add(Manifest.permission.READ_PHONE_STATE);
         }
 
-        if (!(checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)) {
-            lackedPermission.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
-        }
+//        if (!(checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)) {
+//            lackedPermission.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+//        }
 
         if (!(checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)) {
             lackedPermission.add(Manifest.permission.ACCESS_FINE_LOCATION);

@@ -10,7 +10,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 408
-        versionName "sdkdemo-3.3.3.16"
+        versionName "sdkdemo-3.4.4.4"
         buildConfigField('int', 'buildType', buildType)
         ndk {
             abiFilters 'armeabi-v7a'
@@ -62,5 +62,5 @@ dependencies {
     implementation 'tv.yilan.media:player-x86:1.0.0'
     implementation 'tv.yilan.media:player-x86_64:1.0.0'
     //一览sdk
-    implementation "com.yilan.sdk:ui:3.3.3.26"
+    implementation "com.yilan.sdk:ui:3.4.4.4"
 }

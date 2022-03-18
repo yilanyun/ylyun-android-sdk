@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.yilan.sdk.sdkdemo.R;
-import com.yilan.sdk.sdkdemo.ad.ADTestActivity;
 
 public class OtherFragment extends Fragment {
 
@@ -23,12 +22,6 @@ public class OtherFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        view.findViewById(R.id.text_ad).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showLittleCard(v);
-            }
-        });
         view.findViewById(R.id.text_player).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -38,17 +31,8 @@ public class OtherFragment extends Fragment {
 
     }
 
-    /**
-     *
-     * @param v
-     */
-    private void showLittleCard(View v) {
-        ADTestActivity.start(getContext());
-    }
-
     private void showPlayerActivity(){
-        startActivity(new Intent(this.getActivity(), PlayerActivity.class));
+        startActivity(new Intent(this.getActivity(),PlayerActivity.class));
     }
-
 
 }

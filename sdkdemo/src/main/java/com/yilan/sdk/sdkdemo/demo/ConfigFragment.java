@@ -18,6 +18,7 @@ import com.yilan.sdk.player.ylplayer.YLPlayerConfig;
 import com.yilan.sdk.sdkdemo.R;
 import com.yilan.sdk.ui.configs.CommentConfig;
 import com.yilan.sdk.ui.configs.FeedConfig;
+import com.yilan.sdk.ui.configs.LittleStyle;
 import com.yilan.sdk.ui.configs.LittleVideoConfig;
 import com.yilan.sdk.ui.configs.PlayerConfig;
 import com.yilan.sdk.ui.configs.YLUIConfig;
@@ -82,6 +83,67 @@ public class ConfigFragment extends Fragment {
                 }
             }
         });
+        RadioGroup groupUI = view.findViewById(R.id.little_ui);
+        if (LittleVideoConfig.getInstance().getLittleStyle() == LittleStyle.STYLE_RIGHT) {
+            groupUI.check(R.id.little_ui_radio1);
+        } else {
+            groupUI.check(R.id.little_ui_radio2);
+        }
+        groupUI.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch (checkedId) {
+                    case R.id.little_ui_radio1:
+                        LittleVideoConfig.getInstance().setLittleStyle(LittleStyle.STYLE_RIGHT);
+                        break;
+                    case R.id.little_ui_radio2:
+                        LittleVideoConfig.getInstance().setLittleStyle(LittleStyle.STYLE_BOTTOM);
+                        break;
+                }
+            }
+        });
+
+        TextView littleSize = view.findViewById(R.id.tv_litt_size);
+        littleSize.setText(String.format("频道字体大小(%sdp)", LittleVideoConfig.getInstance().getTitleTextSize()));
+        SeekBar littleSeekBar = view.findViewById(R.id.seek_little_size);
+        littleSeekBar.setProgress(LittleVideoConfig.getInstance().getTitleTextSize());
+        littleSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                if (fromUser) {
+                    YLUIConfig.getInstance().setLittleTitleTextSize(progress);
+                    littleSize.setText(String.format("频道字体大小(%sdp)", progress));
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+        Switch littleRefresh = view.findViewById(R.id.little_refresh);
+        littleRefresh.setChecked(LittleVideoConfig.getInstance().isSwipeRefreshEnable());
+        littleRefresh.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                YLUIConfig.getInstance().littleRefreshEnable(isChecked);
+            }
+        });
+
+        Switch relate = view.findViewById(R.id.little_relate);
+        relate.setChecked(LittleVideoConfig.getInstance().getRelateShow());
+        relate.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                YLUIConfig.getInstance().littleShowRelate(isChecked);
+            }
+        });
 
         Switch avatar = view.findViewById(R.id.little_avatar);
         avatar.setChecked(LittleVideoConfig.getInstance().showPlayerAvatar());
@@ -92,8 +154,17 @@ public class ConfigFragment extends Fragment {
             }
         });
 
+        Switch theme = view.findViewById(R.id.feed_theme);
+        theme.setChecked(YLUIConfig.getInstance().getTheme() instanceof YLUIConfig.BlackTheme);
+        theme.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                YLUIConfig.getInstance().setTheme(isChecked ? new YLUIConfig.BlackTheme() : new YLUIConfig.WhiteTheme());
+            }
+        });
+
         Switch like = view.findViewById(R.id.little_like);
-        like.setChecked(YLUIConfig.getInstance().islittleLikeShow());
+        like.setChecked(YLUIConfig.getInstance().isLittleLikeShow());
         like.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -102,7 +173,7 @@ public class ConfigFragment extends Fragment {
         });
 
         Switch share = view.findViewById(R.id.little_share);
-        share.setChecked(YLUIConfig.getInstance().islittleShareShow());
+        share.setChecked(YLUIConfig.getInstance().isLittleShareShow());
         share.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -170,6 +241,54 @@ public class ConfigFragment extends Fragment {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
 
+            }
+        });
+
+        TextView channelSize = view.findViewById(R.id.tv_channel_size);
+        channelSize.setText(String.format("频道字体大小(%sdp)", FeedConfig.getInstance().getTitleTextSize()));
+        SeekBar channelSeekBar = view.findViewById(R.id.seek_channel_size);
+        channelSeekBar.setProgress(FeedConfig.getInstance().getTitleTextSize());
+        channelSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                if (fromUser) {
+                    YLUIConfig.getInstance().setFeedTitleTextSize(progress);
+                    channelSize.setText(String.format("频道字体大小(%sdp)", progress));
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+        Switch channelSwitch = view.findViewById(R.id.channel_line);
+        channelSwitch.setChecked(FeedConfig.getInstance().isUseIndicator());
+        channelSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                YLUIConfig.getInstance().setFeedUseIndicator(isChecked);
+            }
+        });
+        Switch followSwitch = view.findViewById(R.id.channel_follow);
+        followSwitch.setChecked(FeedConfig.getInstance().getFollowChannelAvailable());
+        followSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                YLUIConfig.getInstance().followChannelAvailable(isChecked);
+            }
+        });
+        Switch refreshSwitch = view.findViewById(R.id.channel_refresh);
+        followSwitch.setChecked(FeedConfig.getInstance().isSwipeRefreshEnable());
+        followSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                YLUIConfig.getInstance().feedSwipeRefreshEnable(isChecked);
             }
         });
     }

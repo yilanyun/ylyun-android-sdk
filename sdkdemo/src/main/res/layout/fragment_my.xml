@@ -4,13 +4,93 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_marginTop="30dp"
+    <Button
+        android:id="@+id/login"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
         android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/login_shape"
+        android:text="登陆"
+        android:textColor="#ffffff"
+        android:textSize="16dp"
+        android:textStyle="bold" />
+
+
+    <Button
+        android:id="@+id/config"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/login_shape"
+        android:text="配置"
+        android:textColor="#ffffff"
+        android:textSize="16dp"
+        android:textStyle="bold" />
+
+
+    <Button
+        android:id="@+id/net_check"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/login_shape"
+        android:text="网络监测"
+        android:textColor="#ffffff"
+        android:textSize="16dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/stream_test"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/login_shape"
+        android:text="局部信息流测试"
+        android:textColor="#ffffff"
+        android:textSize="16dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/data_test"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/login_shape"
+        android:text="接口测试"
+        android:textColor="#ffffff"
+        android:textSize="16dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/player_test"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/login_shape"
+        android:text="信息流测试播放器"
+        android:textColor="#ffffff"
+        android:textSize="16dp"
+        android:textStyle="bold" />
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:orientation="horizontal">
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal"
+        android:visibility="gone">
 
         <TextView
             android:layout_width="wrap_content"
@@ -31,19 +111,20 @@
             android:textSize="14dp" />
     </LinearLayout>
 
-
     <LinearLayout
-        android:layout_marginLeft="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
         android:layout_marginTop="20dp"
         android:orientation="horizontal">
+
         <TextView
-            android:textColor="#FF979797"
-            android:textSize="14sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="sdk版本号: " />
+            android:text="sdk版本号: "
+            android:textColor="#FF979797"
+            android:textSize="14sp" />
+
         <TextView
             android:id="@+id/version"
             android:layout_width="wrap_content"
@@ -55,85 +136,5 @@
             android:textIsSelectable="true"
             android:textSize="14dp" />
     </LinearLayout>
-
-
-
-    <Button
-        android:id="@+id/login"
-        android:layout_width="match_parent"
-        android:layout_height="44dp"
-        android:background="@drawable/login_shape"
-        android:layout_marginTop="50dp"
-        android:textSize="16dp"
-        android:textColor="#ffffff"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:textStyle="bold"
-        android:text="登陆" />
-
-    <Button
-        android:id="@+id/config"
-        android:layout_width="match_parent"
-        android:textSize="16dp"
-        android:textColor="#ffffff"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:textStyle="bold"
-        android:layout_height="44dp"
-        android:background="@drawable/login_shape"
-        android:layout_marginTop="30dp"
-        android:text="配置" />
-
-    <Button
-        android:id="@+id/net_check"
-        android:layout_width="match_parent"
-        android:textSize="16dp"
-        android:textColor="#ffffff"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:textStyle="bold"
-        android:layout_height="44dp"
-        android:background="@drawable/login_shape"
-        android:layout_marginTop="30dp"
-        android:text="网络监测" />
-
-    <Button
-        android:id="@+id/ad_test"
-        android:layout_width="match_parent"
-        android:textSize="16dp"
-        android:textColor="#ffffff"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:textStyle="bold"
-        android:layout_height="44dp"
-        android:background="@drawable/login_shape"
-        android:layout_marginTop="30dp"
-        android:text="广告测试" />
-
-    <Button
-        android:id="@+id/stream_test"
-        android:layout_width="match_parent"
-        android:textSize="16dp"
-        android:textColor="#ffffff"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:textStyle="bold"
-        android:layout_height="44dp"
-        android:background="@drawable/login_shape"
-        android:layout_marginTop="30dp"
-        android:text="局部信息流测试" />
-
-    <Button
-        android:id="@+id/data_test"
-        android:layout_width="match_parent"
-        android:textSize="16dp"
-        android:textColor="#ffffff"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:textStyle="bold"
-        android:layout_height="44dp"
-        android:background="@drawable/login_shape"
-        android:layout_marginTop="30dp"
-        android:text="接口测试" />
 
 </LinearLayout>
