@@ -62,5 +62,5 @@ dependencies {
     implementation 'tv.yilan.media:player-x86:1.0.0'
     implementation 'tv.yilan.media:player-x86_64:1.0.0'
     //一览sdk
-    implementation "com.yilan.sdk:ui:3.4.4.4"
+    implementation "com.yilan.sdk:ui:3.4.4.8"
 }

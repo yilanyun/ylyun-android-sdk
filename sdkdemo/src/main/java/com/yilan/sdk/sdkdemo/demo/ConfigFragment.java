@@ -183,7 +183,7 @@ public class ConfigFragment extends Fragment {
 
 
         Switch loopStyle = view.findViewById(R.id.little_loop_style);
-        loopStyle.setChecked(YLPlayerConfig.config().isVideoLoop());
+        loopStyle.setChecked(LittleVideoConfig.getInstance().isVideoLoop());
         loopStyle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
